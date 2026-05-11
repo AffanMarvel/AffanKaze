@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Media — Affan Shaikh | AffanKaze.in</title>
+  <meta name="description" content="Official media and social channels of Affan Shaikh — YouTube, Instagram, X, and more."/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .media-page{padding:100px 40px 60px;max-width:1300px;margin:0 auto}
+    .media-hero{text-align:center;margin-bottom:80px}
+    .media-hero-eyebrow{font-family:'Orbitron',sans-serif;color:#00f0ff;font-size:.75rem;letter-spacing:4px;margin-bottom:12px}
+    .media-hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;color:#fff;margin:0 0 12px;background:linear-gradient(135deg,#fff 0%,#00f0ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .media-hero p{font-family:'Rajdhani',sans-serif;color:#888;font-size:1.1rem;max-width:600px;margin:0 auto}
+    .media-hero-line{width:80px;height:2px;background:linear-gradient(90deg,#00f0ff,transparent);margin:20px auto 0}
+
+    /* Platform Section */
+    .platform-section{margin-bottom:70px}
+    .platform-section-header{display:flex;align-items:center;gap:16px;margin-bottom:30px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.07)}
+    .platform-section-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .platform-section-title{font-family:'Orbitron',sans-serif;font-size:1.3rem;color:#fff;margin:0}
+    .platform-section-sub{font-family:'Rajdhani',sans-serif;font-size:.85rem;color:#555;margin:3px 0 0;letter-spacing:1px}
+
+    /* Channel Cards Grid */
+    .channel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+    .channel-card{background:rgba(15,15,20,.8);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+    .channel-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+    .channel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .35s}
+    .channel-card:hover::before{opacity:1}
+    .channel-card-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+    .channel-logo{width:50px;height:50px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,.1)}
+    .channel-logo-placeholder{width:50px;height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:700}
+    .channel-name{font-family:'Orbitron',sans-serif;font-size:.95rem;color:#fff;margin:0 0 3px}
+    .channel-handle{font-family:'Rajdhani',sans-serif;font-size:.8rem;color:#555;margin:0;letter-spacing:1px}
+    .channel-desc{font-family:'Rajdhani',sans-serif;color:#777;font-size:.95rem;line-height:1.6;margin-bottom:20px;flex-grow:1}
+    .channel-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:6px;font-family:'Orbitron',sans-serif;font-size:.65rem;letter-spacing:2px;border:1px solid;transition:all .3s;text-decoration:none;margin-top:auto;width:fit-content}
+    /* Dynamic Brand Variables */
+    .brand-yt-default { --brand: #ff0000; --brand-bg: rgba(255,0,0,0.15); --brand-glow: rgba(255,0,0,0.4); }
+    .brand-marvel { --brand: #E62429; --brand-bg: rgba(230,36,41,0.15); --brand-glow: rgba(230,36,41,0.4); }
+    .brand-superior { --brand: #00f0ff; --brand-bg: rgba(0,240,255,0.15); --brand-glow: rgba(0,240,255,0.4); }
+    .brand-comics { --brand: #f5c518; --brand-bg: rgba(245,197,24,0.15); --brand-glow: rgba(245,197,24,0.4); }
+    .brand-super { --brand: #9933ff; --brand-bg: rgba(153,51,255,0.15); --brand-glow: rgba(153,51,255,0.4); }
+    .brand-ak { --brand: #ff6600; --brand-bg: rgba(255,102,0,0.15); --brand-glow: rgba(255,102,0,0.4); }
+    .brand-anime { --brand: #ff0055; --brand-bg: rgba(255,0,85,0.15); --brand-glow: rgba(255,0,85,0.4); }
+    .brand-dark { --brand: #8b0000; --brand-bg: rgba(139,0,0,0.15); --brand-glow: rgba(139,0,0,0.4); }
+    .brand-ig { --brand: #e4405f; --brand-bg: rgba(228,64,95,0.15); --brand-glow: rgba(228,64,95,0.4); }
+    .brand-x { --brand: #1DA1F2; --brand-bg: rgba(29,161,242,0.15); --brand-glow: rgba(29,161,242,0.4); }
+    .brand-rd { --brand: #ff4500; --brand-bg: rgba(255,69,0,0.15); --brand-glow: rgba(255,69,0,0.4); }
+
+    .channel-card { border-color: rgba(255,255,255,0.07); }
+    .channel-card:hover { border-color: var(--brand); box-shadow: 0 20px 50px var(--brand-bg); }
+    .channel-card::before { background: linear-gradient(90deg, var(--brand), transparent); }
+    
+    .channel-btn { border-color: var(--brand); color: var(--brand); }
+    .channel-card:hover .channel-btn { background: var(--brand); color: #fff; box-shadow: 0 0 20px var(--brand-glow); }
+    
+    .channel-logo-placeholder { background: var(--brand-bg); color: var(--brand); }
+
+    /* Section Icons */
+    .yt-section .platform-section-icon { background: rgba(255,0,0,0.12); border: 1px solid rgba(255,0,0,0.25); }
+    .ig-section .platform-section-icon { background: rgba(228,64,95,0.12); border: 1px solid rgba(228,64,95,0.25); }
+    .x-section .platform-section-icon { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); }
+    .rd-section .platform-section-icon { background: rgba(255,69,0,0.12); border: 1px solid rgba(255,69,0,0.25); }
+
+    /* Logo Image Style */
+    .channel-logo-img { width: 50px; height: 50px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
+
+    @media(max-width:768px){.media-page{padding:90px 16px 40px}.channel-grid{grid-template-columns:1fr}}
+  </style>
+<link rel="stylesheet" href="../css/mobile.css"/>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="vignette"></div>
+<div id="scroll-bar"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="cursor-cross-h"></div>
+<div id="cursor-cross-v"></div>
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="bg-layer"></div>
+<div class="hex-grid"></div>
+<div class="scan-global"></div>
+<div class="particles-bg"></div>
+
+<nav id="navbar">
+  <div class="nav-edge nav-edge-left"></div>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-photo-wrap">
+      <img src="../Photo-2.jpg" alt="Affan Shaikh" class="nav-photo"/>
+    </div>
+    <div class="nav-logo-text-wrap">
+      <span class="nav-logo-text">AFFAN SHAIKH</span>
+      <span class="nav-sys-status">SYS.ONLINE // V3.0</span>
+    </div>
+  </a>
+  <button class="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+<ul class="nav-links">
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="affan-marvel.html">Marvel</a></li>
+  <li><a href="media.html" class="active">Media</a></li>
+  <li><a href="projects.html">Projects</a></li>
+  <li><a href="services.html">Services</a></li>
+  <li><a href="how-i-work.html">How I Work</a></li>
+  <li><a href="achievements.html">Achievements</a></li>
+  <li><a href="experience.html">Experience</a></li>
+  <li><a href="hobbies.html">Hobbies</a></li>
+  <li><a href="travel.html">Travel</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ul>
+  <div class="nav-edge nav-edge-right"></div>
+</nav>
+
+<div class="main-content page-enter">
+  <section class="media-section">
+    <div class="media-header">
+      <div class="media-header-label">TRANSMISSION HUBS</div>
+      <h2>Media & Socials</h2>
+    </div>
+
+  <!-- YOUTUBE -->
+  <div class="platform-section yt-section">
+    <div class="platform-section-header">
+      <div class="platform-section-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zm-14 9.4V8.4l6.3 3.6-6.3 3.6z"/></svg></div>
+      <div><div class="platform-section-title">YouTube</div><div class="platform-section-sub">7 CHANNELS</div></div>
+    </div>
+    <div class="channel-grid">
+      <a href="https://www.youtube.com/@affanmarvels" target="_blank" class="channel-card brand-marvel reveal"><div class="channel-card-top"><img src="../Image/affanmarvel-logo.jpg" alt="AM" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AM</div><div><div class="channel-name">AffanMarvel</div><div class="channel-handle">@affanmarvels</div></div></div><p class="channel-desc">Marvel universe breakdowns, theories &amp; cinematic storytelling.</p><span class="channel-btn">Open Channel</span></a>
+      <a href="https://www.youtube.com/@superioraffan" target="_blank" class="channel-card brand-superior reveal"><div class="channel-card-top"><img src="../Image/superioraffan-logo.jpg" alt="SA" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">SA</div><div><div class="channel-name">Superior-Affan</div><div class="channel-handle">@superioraffan</div></div></div><p class="channel-desc">High-tier content experiments and superior-level visual breakdowns.</p><span class="channel-btn">Open Channel</span></a>
+      <a href="https://www.youtube.com/@affancomics" target="_blank" class="channel-card brand-comics reveal"><div class="channel-card-top"><img src="../Image/affancomics-logo.jpg" alt="AC" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AC</div><div><div class="channel-name">AffanComics</div><div class="channel-handle">@affancomics</div></div></div><p class="channel-desc">Comics lore, deep dives &amp; character analysis across universes.</p><span class="channel-btn">Open Channel</span></a>
+      <a href="https://www.youtube.com/@super-comics" target="_blank" class="channel-card brand-super reveal"><div class="channel-card-top"><img src="../Image/supercomics-logo.jpg" alt="SC" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">SC</div><div><div class="channel-name">SuperComics!</div><div class="channel-handle">@super-comics</div></div></div><p class="channel-desc">Super-powered comics — DC, Marvel &amp; beyond.</p><span class="channel-btn">Open Channel</span></a>
+      <a href="https://www.youtube.com/@affan-kaze" target="_blank" class="channel-card brand-ak reveal"><div class="channel-card-top"><img src="../Image/affankaze-logo.jpg" alt="AK" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AK</div><div><div class="channel-name">Affan Kaze</div><div class="channel-handle">@affan-kaze</div></div></div><p class="channel-desc">Movies &amp; series reviews — deep dives into cinema.</p><span class="channel-btn">Open Channel</span></a>
+      <a href="https://www.youtube.com/@anime-kaze" target="_blank" class="channel-card brand-anime reveal"><div class="channel-card-top"><img src="../Image/animekaze-logo.jpg" alt="AnK" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AnK</div><div><div class="channel-name">Anime Kazel</div><div class="channel-handle">@anime-kaze</div></div></div><p class="channel-desc">Anime breakdowns, lore, rankings &amp; character studies.</p><span class="channel-btn">Open Channel</span></a>
+      <a href="https://www.youtube.com/@ItisAFFAN" target="_blank" class="channel-card brand-dark reveal"><div class="channel-card-top"><img src="../Image/itisaffan-logo.jpg" alt="IA" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">IA</div><div><div class="channel-name">Its Affan</div><div class="channel-handle">@ItisAFFAN</div></div></div><p class="channel-desc">Dark, unfiltered content — the side you do not see elsewhere.</p><span class="channel-btn">Open Channel</span></a>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM -->
+  <div class="platform-section ig-section">
+    <div class="platform-section-header">
+      <div class="platform-section-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="#e4405f"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+      <div><div class="platform-section-title">Instagram</div><div class="platform-section-sub">2 ACCOUNTS</div></div>
+    </div>
+    <div class="channel-grid">
+      <a href="https://www.instagram.com/affankaze" target="_blank" class="channel-card brand-ig reveal"><div class="channel-card-top"><img src="../Image/ig-affankaze-logo.jpg" alt="AK" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AK</div><div><div class="channel-name">AffanKaze</div><div class="channel-handle">@affankaze</div></div></div><p class="channel-desc">Main personal brand — lifestyle, creative process &amp; behind the scenes.</p><span class="channel-btn">Follow</span></a>
+      <a href="https://www.instagram.com/affan_marvel" target="_blank" class="channel-card brand-marvel reveal"><div class="channel-card-top"><img src="../Image/ig-affanmarvel-logo.jpg" alt="AM" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AM</div><div><div class="channel-name">AffanMarvel</div><div class="channel-handle">@affan_marvel</div></div></div><p class="channel-desc">Marvel content, edits, fan theories &amp; comic culture posts.</p><span class="channel-btn">Follow</span></a>
+    </div>
+  </div>
+
+  <!-- X -->
+  <div class="platform-section x-section">
+    <div class="platform-section-header">
+      <div class="platform-section-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
+      <div><div class="platform-section-title">X (Twitter)</div><div class="platform-section-sub">2 ACCOUNTS</div></div>
+    </div>
+    <div class="channel-grid">
+      <a href="https://x.com/AffanKaze" target="_blank" class="channel-card brand-x reveal"><div class="channel-card-top"><img src="../Image/x-affankaze-logo.jpg" alt="AK" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AK</div><div><div class="channel-name">Affan Shaikh</div><div class="channel-handle">@AffanKaze</div></div></div><p class="channel-desc">Personal thoughts, updates &amp; real-time commentary on life &amp; work.</p><span class="channel-btn">Follow on X</span></a>
+      <a href="https://x.com/affanmarvel" target="_blank" class="channel-card brand-marvel reveal"><div class="channel-card-top"><img src="../Image/x-affanmarvel-logo.jpg" alt="AM" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AM</div><div><div class="channel-name">Affan Marvel</div><div class="channel-handle">@affanmarvel</div></div></div><p class="channel-desc">Marvel content, pop culture takes &amp; fandom discussions on X.</p><span class="channel-btn">Follow on X</span></a>
+    </div>
+  </div>
+
+  <!-- REDDIT -->
+  <div class="platform-section rd-section">
+    <div class="platform-section-header">
+      <div class="platform-section-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="#ff4500"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></div>
+      <div><div class="platform-section-title">Reddit</div><div class="platform-section-sub">1 ACCOUNT</div></div>
+    </div>
+    <div class="channel-grid">
+      <a href="https://reddit.com/user/AffanMarvel" target="_blank" class="channel-card brand-rd reveal"><div class="channel-card-top"><img src="../Image/rd-affanmarvel-logo.jpg" alt="AM" class="channel-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="channel-logo-placeholder" style="display:none">AM</div><div><div class="channel-name">AffanMarvel</div><div class="channel-handle">u/AffanMarvel</div></div></div><p class="channel-desc">Community discussions, Marvel posts &amp; engaging with the fandom.</p><span class="channel-btn">View Profile</span></a>
+    </div>
+  </div>
+
+</div>
+
+  <footer class="stark-footer">
+  <!-- ── TOP BAR: FREELANCE STATUS ── -->
+  <div class="freelance-bar">
+    <span class="fb-pulse"></span>
+    <span class="fb-label">OPEN FOR FREELANCE WORK</span>
+    <span class="fb-divider">·</span>
+    <span class="fb-socials">Instagram DM · X</span>
+    <a href="contact.html" class="fb-hire-btn">HIRE ME</a>
+  </div>
+
+  <!-- ── MAIN FOOTER GRID ── -->
+  <div class="sf-main-grid">
+    <!-- COLUMN 1 — Brand -->
+    <div class="sf-col-brand">
+      <div class="sf-brand-id">// ID: AS-001 · NAVSARI, GUJARAT, INDIA</div>
+      <h3 class="sf-brand-name">AFFAN SHAIKH</h3>
+      <div class="sf-brand-role">Social Media Director · Web Developer · Content Creator</div>
+      <p class="sf-brand-tagline">Content that hits. Visuals that convert. Between direction and technology lies the space where I create.</p>
+      
+      <div class="sf-terminal-chip">
+        <span class="sf-chip-pulse"></span>● ONLINE · AVAILABLE FOR HIRE
+      </div>
+      
+      <div class="sf-social-icons">
+        <a href="https://instagram.com/AffanKaze" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.834a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+        </a>
+        <a href="https://in.linkedin.com/in/affan-shaikh-75a6a4233" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/AffanMarvel" target="_blank" aria-label="X">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com/@AffanMarvel" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMN 2 — Navigate -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">NAVIGATE</h4>
+      <div class="sf-links-list">
+        <a href="../index.html"><span class="sf-arrow">›</span> Home</a>
+        <a href="affan-marvel.html"><span class="sf-arrow">›</span> About</a>
+        <a href="projects.html"><span class="sf-arrow">›</span> Projects</a>
+        <a href="services.html"><span class="sf-arrow">›</span> Services</a>
+        <a href="experience.html"><span class="sf-arrow">›</span> Experience</a>
+        <a href="achievements.html"><span class="sf-arrow">›</span> Achievements</a>
+        <a href="contact.html"><span class="sf-arrow">›</span> Contact</a>
+      </div>
+    </div>
+
+    <!-- COLUMN 3 — Projects -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">PROJECTS</h4>
+      <div class="sf-links-list sf-proj-list">
+        <a href="https://affanmarvel.in" target="_blank">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AffanMarvel.in</span> <span class="sf-badge">[LIVE]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> Gym Training App</span> <span class="sf-badge">[APP]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AI Automation Suite</span> <span class="sf-badge">[AI]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> Anivel Culture</span> <span class="sf-badge">[BRAND]</span>
+        </a>
+        <a href="../index.html">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AffanKaze.in</span> <span class="sf-badge">[PORTFOLIO]</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMN 4 — Connect -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">CONNECT</h4>
+      <div class="sf-links-list sf-connect-list">
+        <a href="https://instagram.com/AffanKaze" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.834a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+          Instagram DM
+        </a>
+        <a href="https://x.com/AffanMarvel" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / Twitter
+        </a>
+        <a href="https://in.linkedin.com/in/affan-shaikh-75a6a4233" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:hello@affankaze.in">
+          <svg viewBox="0 0 24 24"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm10 8.5L2.5 5.5v12a.5.5 0 0 0 .5.5h18a.5.5 0 0 0 .5-.5v-12L12 12.5z"/></svg>
+          hello@affankaze.in
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GRADIENT DIVIDER ── -->
+  <div class="sf-grad-divider"></div>
+
+  <!-- ── BOTTOM COPYRIGHT BAR ── -->
+  <div class="sf-bot-bar">
+    <div class="sf-copy">© 2026 <span class="sf-hl">Affan Shaikh</span> · All Rights Reserved · AffanKaze.in</div>
+    <div class="sf-sys-bot">
+      <span class="fb-pulse sf-sys-pulse"></span> SYSTEM ONLINE · ALL MODULES ACTIVE
+    </div>
+  </div>
+</footer>
+</div>
+
+<script src="../js/header.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  // Simple intersection observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+

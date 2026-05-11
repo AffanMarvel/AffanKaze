@@ -1,0 +1,234 @@
+/* ============================================================
+   MODERN PORTFOLIO FOOTER — AFFANKAZE.IN
+   ============================================================ */
+
+:root {
+    --footer-bg: #0a0a0a;
+    --footer-text: #e0e0e0;
+    --footer-muted: #888;
+    --footer-accent: #00cfff; /* Neon Blue */
+    --footer-accent-secondary: #a855f7; /* Purple */
+    --footer-gradient: linear-gradient(135deg, var(--footer-accent), var(--footer-accent-secondary));
+    --footer-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    font-family: 'Inter', sans-serif;
+    padding: 80px 0 30px;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+/* Subtle Top Border/Gradient Line */
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--footer-accent), var(--footer-accent-secondary), transparent);
+    opacity: 0.5;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Column 1: Brand */
+.footer-brand .brand-name {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: var(--footer-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.footer-brand .tagline {
+    font-size: 14px;
+    color: var(--footer-muted);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--footer-text);
+    text-decoration: none;
+    transition: var(--footer-transition);
+}
+
+.social-links a:hover {
+    background: var(--footer-gradient);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 207, 255, 0.2);
+    border-color: transparent;
+}
+
+.social-links a i {
+    font-size: 18px;
+}
+
+/* Column Titles */
+.footer-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--footer-gradient);
+}
+
+/* Lists */
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-list li {
+    margin-bottom: 12px;
+}
+
+.footer-list a {
+    color: var(--footer-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: var(--footer-transition);
+    display: inline-block;
+}
+
+.footer-list a:hover {
+    color: var(--footer-accent);
+    transform: translateX(5px);
+}
+
+/* Contact Bar */
+.footer-contact-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-info-text h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.contact-info-text p {
+    color: var(--footer-muted);
+    font-size: 14px;
+}
+
+.hire-me-btn {
+    padding: 12px 30px;
+    background: var(--footer-gradient);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: var(--footer-transition);
+    box-shadow: 0 5px 15px rgba(0, 207, 255, 0.15);
+}
+
+.hire-me-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 207, 255, 0.3);
+}
+
+/* Copyright Bar */
+.footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.copyright-text {
+    font-size: 13px;
+    color: var(--footer-muted);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-contact-bar {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .site-footer {
+        padding: 60px 0 20px;
+    }
+    
+    .footer-brand, .footer-heading, .footer-list {
+        text-align: center;
+    }
+    
+    .footer-heading::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-list a:hover {
+        transform: translateY(-2px);
+    }
+}

@@ -1,0 +1,42 @@
+/* MEDIA PAGE — media-page.css */
+.med-glow-purple{position:fixed;top:-100px;right:-100px;width:400px;height:400px;background:rgba(164,123,255,.12);border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.med-glow-blue{position:fixed;bottom:-100px;left:-100px;width:400px;height:400px;background:rgba(0,195,255,.1);border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.med-section{padding:80px 40px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.med-header{text-align:center;margin-bottom:60px}
+.med-num{font-family:'Orbitron',sans-serif;font-size:.75rem;color:#666;letter-spacing:3px;margin-bottom:10px}
+.med-title{font-family:'Orbitron',sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);background:linear-gradient(135deg,#fff,#a47bff,#00c3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0 0 12px}
+.med-sub{color:#777;font-family:'Rajdhani',sans-serif;font-size:1.15rem;max-width:500px;margin:0 auto 20px}
+.med-line{width:80px;height:2px;background:linear-gradient(90deg,#a47bff,#00c3ff);margin:0 auto;border-radius:2px}
+.med-group{margin-bottom:50px}
+.med-group-head{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.med-group-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.med-group-icon svg{width:16px;height:16px}
+.med-group-name{font-family:'Orbitron',sans-serif;font-size:.8rem;letter-spacing:3px;color:#aaa;text-transform:uppercase}
+.med-group-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+.med-group-count{font-family:'Rajdhani',sans-serif;font-size:.85rem;color:#555}
+.med-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.med-card{display:flex;align-items:center;gap:14px;background:#0d0d14;border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:18px 20px;text-decoration:none;color:inherit;position:relative;transition:all .25s ease;overflow:hidden}
+.med-card:hover{transform:translateY(-2px)}
+.med-card .med-arrow{position:absolute;top:14px;right:14px;opacity:0;transition:opacity .25s;color:#888;font-size:.85rem}
+.med-card:hover .med-arrow{opacity:1}
+.med-card-logo{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.med-card-logo svg{width:22px;height:22px}
+.med-card-info{flex:1;min-width:0}
+.med-card-name{font-family:'Orbitron',sans-serif;font-size:.85rem;font-weight:700;color:#fff;margin:0 0 3px}
+.med-card-handle{font-family:'Rajdhani',sans-serif;font-size:.85rem;color:#888;margin:0}
+.med-card-desc{font-family:'Rajdhani',sans-serif;font-size:.8rem;color:#555;margin:2px 0 0}
+.med-badge{position:absolute;top:12px;right:40px;background:rgba(164,123,255,.15);border:1px solid rgba(164,123,255,.3);color:#a47bff;font-family:'Orbitron',sans-serif;font-size:.55rem;padding:3px 8px;border-radius:4px;letter-spacing:1px}
+.med-hero-card{grid-column:1/-1}
+.med-hero-card .med-card-logo{width:54px;height:54px}
+.med-hero-card .med-card-name{font-size:1rem}
+/* Platform hover colors */
+.med-card-yt:hover{border-color:rgba(255,0,0,.4);box-shadow:0 4px 20px rgba(255,0,0,.08)}
+.med-card-ig:hover{border-color:rgba(225,48,108,.4);box-shadow:0 4px 20px rgba(225,48,108,.08)}
+.med-card-x:hover{border-color:rgba(255,255,255,.25);box-shadow:0 4px 20px rgba(255,255,255,.04)}
+.med-card-rd:hover{border-color:rgba(255,69,0,.4);box-shadow:0 4px 20px rgba(255,69,0,.08)}
+.med-grid-single{grid-template-columns:1fr;max-width:50%}
+@media(max-width:600px){
+.med-section{padding:80px 20px}
+.med-grid,.med-grid-single{grid-template-columns:1fr;max-width:100%}
+.med-hero-card{grid-column:auto}
+}

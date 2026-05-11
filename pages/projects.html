@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Work — Affan Shaikh | AffanKaze.in</title>
+  <meta name="description" content="Portfolio of Affan Shaikh — YouTube content, brand collaborations, automation pipelines, websites, and branding work."/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .afk-work-section{padding:100px 20px 40px;max-width:1440px;margin:0 auto;overflow-x:hidden}
+    .afk-work-header{text-align:center;margin-bottom:40px}
+    .afk-work-header-label{font-family:'Orbitron',sans-serif;color:#00c3ff;font-size:.8rem;letter-spacing:3px;text-transform:uppercase}
+    .afk-work-header h2{font-family:'Orbitron',sans-serif;font-size:clamp(2rem,5vw,3.2rem);margin:10px 0;color:#fff;text-shadow:0 0 20px rgba(0,195,255,.3)}
+    .afk-work-header p{color:#aaa;font-size:1.15rem;max-width:600px;margin:0 auto;font-family:'Rajdhani',sans-serif}
+    .afk-work-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;position:sticky;top:70px;z-index:100;background:rgba(10,10,10,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:15px 10px;border-radius:8px;margin-bottom:60px;border:1px solid rgba(255,255,255,.06)}
+    .afk-work-tab{background:0 0;border:1px solid rgba(255,255,255,.12);color:#ccc;padding:8px 18px;font-family:'Orbitron',sans-serif;font-size:.7rem;cursor:pointer;transition:all .3s;border-radius:4px;text-transform:uppercase;letter-spacing:1px}
+    .afk-work-tab.active,.afk-work-tab:hover{border-color:#00c3ff;color:#00c3ff;box-shadow:0 0 15px rgba(0,195,255,.2)}
+    .afk-work-cat-section{margin-bottom:80px;opacity:0;transform:translateY(30px);transition:all .6s ease}
+    .afk-work-cat-section.afk-visible{opacity:1;transform:translateY(0)}
+    .afk-work-cat-title{font-family:'Orbitron',sans-serif;font-size:1.5rem;margin-bottom:30px;padding-bottom:16px;color:#fff;letter-spacing:2px;text-transform:uppercase;position:relative;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(0,195,255,.1)}
+    .afk-work-cat-title::before{content:'';flex-shrink:0;display:block;width:4px;height:22px;background:#00c3ff;box-shadow:0 0 10px #00c3ff55}
+    .afk-work-slider-wrap{position:relative}
+    .afk-work-slider{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:28px;padding:10px 0 30px;}
+    .afk-work-slider::-webkit-scrollbar{height:5px}
+    .afk-work-slider::-webkit-scrollbar-track{background:#1a1a1a;border-radius:4px}
+    .afk-work-slider::-webkit-scrollbar-thumb{background:#00c3ff;border-radius:4px}
+    .afk-work-arrow{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.7);border:1px solid rgba(0,195,255,.3);color:#00c3ff;font-size:1.2rem;cursor:pointer;align-items:center;justify-content:center;transition:all .3s;backdrop-filter:blur(4px)}
+    .afk-work-arrow:hover{background:#00c3ff;color:#000;box-shadow:0 0 15px #00c3ff}
+    .afk-work-arrow-l{left:-5px}
+    .afk-work-arrow-r{right:-5px}
+    .afk-work-card{background:rgba(8,8,10,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(0,195,255,.15);border-top:2px solid #00c3ff;border-radius:4px;overflow:hidden;transition:all .35s ease;display:flex;flex-direction:column;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+    .afk-work-card:hover{transform:translateY(-5px);border-color:rgba(0,195,255,.5);box-shadow:0 15px 40px rgba(0,195,255,.12),0 0 15px rgba(0,195,255,.2)} .afk-work-card:hover .afk-work-card-img img{transform:scale(1.05)} .fallback-logo{position:absolute;bottom:-25px;right:25px;width:64px;height:64px;border-radius:6px;border:2px solid #111;background:#0a0a0c;padding:4px;box-shadow:0 8px 25px rgba(0,0,0,.8);z-index:2;display:flex;align-items:center;justify-content:center;overflow:hidden;} .fallback-logo img{width:100%;height:100%;object-fit:cover;border-radius:4px;}
+    .afk-work-card-img{height:190px;background:#0a0a0c;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(0,195,255,.15);position:relative;overflow:hidden}
+    .afk-work-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.165,.84,.44,1)}
+    .afk-work-card-img::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom, transparent 60%, rgba(8,8,10,0.9) 100%);pointer-events:none;z-index:1}
+    .afk-work-card-body{padding:30px 25px 25px;flex-grow:1;display:flex;flex-direction:column;font-family:'Rajdhani',sans-serif;position:relative;z-index:3}
+    .afk-work-card-title{font-family:'Orbitron',sans-serif;font-size:1.3rem;margin:0 0 8px;color:#fff;letter-spacing:1px;text-transform:uppercase}
+    .afk-work-card-handle{color:#00c3ff;font-size:.9rem;margin-bottom:12px;font-family:'Orbitron',sans-serif;display:flex;align-items:center;gap:8px;letter-spacing:1px}
+    .afk-work-card-niche{font-size:.72rem;color:#f5a623;margin-bottom:14px;font-family:'Orbitron',sans-serif;letter-spacing:2px;text-transform:uppercase;border-left:2px solid #f5a623;padding-left:8px}
+    .afk-work-card-desc{font-size:1rem;color:#909090;margin-bottom:20px;line-height:1.65;flex-grow:1}
+    .afk-work-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+    .afk-work-pill{background:rgba(0,195,255,.04);border:1px dashed rgba(0,195,255,.35);padding:5px 11px;border-radius:2px;font-size:.7rem;color:#6ee4ff;font-family:'Rajdhani',sans-serif;letter-spacing:.8px;text-transform:uppercase;transition:all .25s}
+    .afk-work-pill:hover{background:rgba(0,195,255,.12);border-color:#00c3ff;color:#fff}
+    .afk-work-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;background:rgba(0,195,255,.06);border:1px solid rgba(0,195,255,.45);color:#00c3ff;font-family:'Orbitron',sans-serif;font-size:.7rem;text-decoration:none;border-radius:2px;transition:all .3s;cursor:pointer;letter-spacing:2px;margin-top:auto;width:100%;text-transform:uppercase;position:relative;overflow:hidden;box-sizing:border-box}
+    .afk-work-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,195,255,.18),transparent);transition:left .45s}
+    .afk-work-btn:hover::before{left:100%}
+    .afk-work-btn:hover{background:rgba(0,195,255,.14);color:#fff;box-shadow:0 0 18px rgba(0,195,255,.3),inset 0 0 8px rgba(0,195,255,.08)}
+    .afk-work-btn-gold{border-color:#f5a623;color:#f5a623}
+    .afk-work-btn-gold:hover{background:#f5a623;color:#000;box-shadow:0 0 18px rgba(245,166,35,.4)}
+    .afk-work-btn-locked{border-color:#555;color:#999}
+    .afk-work-btn-locked:hover{background:#333;color:#fff;box-shadow:none}
+    .afk-work-blur-card .afk-work-card-img{filter:blur(8px) brightness(.6);user-select:none;pointer-events:none}
+    .afk-work-blur-card .afk-work-blur-title{filter:blur(6px);user-select:none}
+    .afk-work-lock-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.8rem;z-index:10;text-shadow:0 0 25px rgba(0,0,0,.9);color:#ff3366}
+    .afk-work-badge-live{border-color:#00ff88;color:#00ff88}
+    .afk-work-badge-dev{border-color:#f5a623;color:#f5a623}
+    .afk-work-badge-priv{border-color:#ff3366;color:#ff3366}
+    .afk-work-badge-shark{border-color:#f5a623;color:#f5a623;background:rgba(245,166,35,.1)}
+    .afk-work-summary{background:rgba(8,8,10,.6);border:1px solid rgba(0,195,255,.15);border-left:4px solid #00c3ff;border-radius:2px;padding:40px;text-align:center;margin-top:30px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+    .afk-work-big-num{font-family:'Orbitron',sans-serif;font-size:4rem;color:#00c3ff;margin:0;line-height:1;text-shadow:0 0 15px rgba(0,195,255,.4)}
+    .afk-work-summary h3{font-family:'Orbitron',sans-serif;font-size:1.4rem;color:#fff;margin:15px 0;text-transform:uppercase;letter-spacing:1px}
+    .afk-work-summary p{color:#a0a0a0;max-width:550px;margin:0 auto 25px;font-family:'Rajdhani',sans-serif;font-size:1.1rem;line-height:1.6}
+    .afk-work-shimmer{background:linear-gradient(90deg,#111 25%,#222 50%,#111 75%);background-size:200% 100%;animation:afk-shimmer 1.5s infinite;height:18px;border-radius:2px;margin-bottom:12px;width:70%;border:1px solid rgba(255,255,255,0.05)}
+    @keyframes afk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .afk-work-cta-full{text-align:center;padding:70px 20px;background:linear-gradient(to bottom,transparent,rgba(0,195,255,.04),transparent);border-top:1px solid rgba(0,195,255,.1);border-bottom:1px solid rgba(0,195,255,.1);margin:50px 0;border-radius:2px}
+    .afk-work-locked-section{margin-top:80px;border-top:1px dashed #333;padding-top:40px}
+    .afk-work-locked-label{color:#ff3366;font-family:'Orbitron',sans-serif;font-size:.8rem;letter-spacing:2px}
+    /* MODAL */
+    .afk-work-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s}
+    .afk-work-overlay.active{opacity:1;visibility:visible}
+    .afk-work-modal{background:#08080a;border:1px solid #00c3ff;border-radius:2px;padding:35px;max-width:620px;width:92%;position:relative;transform:translateY(25px) scale(.97);transition:all .35s;box-shadow:0 0 50px rgba(0,195,255,.15);max-height:85vh;overflow-y:auto}
+    .afk-work-overlay.active .afk-work-modal{transform:translateY(0) scale(1)}
+    .afk-work-modal-x{position:absolute;top:12px;right:15px;background:0 0;border:none;color:#fff;font-size:1.5rem;cursor:pointer;z-index:10;transition:color .2s}
+    .afk-work-modal-x:hover{color:#00c3ff}
+    .afk-work-contact-form{display:flex;flex-direction:column;gap:15px}
+    .afk-work-contact-form input,.afk-work-contact-form textarea{background:#111;border:1px solid rgba(255,255,255,.1);color:#fff;padding:12px;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:1rem;outline:none;transition:border-color .3s}
+    .afk-work-contact-form input:focus,.afk-work-contact-form textarea:focus{border-color:#00c3ff}
+    .afk-work-contact-form textarea{min-height:80px;resize:vertical}
+    @media(max-width:768px){
+    @keyframes afk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .afk-work-cta-full{text-align:center;padding:70px 20px;background:linear-gradient(to bottom,transparent,rgba(0,195,255,.04),transparent);border-top:1px solid rgba(0,195,255,.1);border-bottom:1px solid rgba(0,195,255,.1);margin:50px 0;border-radius:2px}
+    .afk-work-locked-section{margin-top:80px;border-top:1px dashed #333;padding-top:40px}
+    .afk-work-locked-label{color:#ff3366;font-family:'Orbitron',sans-serif;font-size:.8rem;letter-spacing:2px}
+    /* MODAL */
+    .afk-work-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.82);backdrop-filter:blur(6px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s}
+    .afk-work-overlay.active{opacity:1;visibility:visible}
+    .afk-work-modal{background:#08080a;border:1px solid #00c3ff;border-radius:2px;padding:35px;max-width:620px;width:92%;position:relative;transform:translateY(25px) scale(.97);transition:all .35s;box-shadow:0 0 50px rgba(0,195,255,.15);max-height:85vh;overflow-y:auto}
+    .afk-work-overlay.active .afk-work-modal{transform:translateY(0) scale(1)}
+    .afk-work-modal-x{position:absolute;top:12px;right:15px;background:0 0;border:none;color:#fff;font-size:1.5rem;cursor:pointer;z-index:10;transition:color .2s}
+    .afk-work-modal-x:hover{color:#00c3ff}
+    .afk-work-contact-form{display:flex;flex-direction:column;gap:15px}
+    .afk-work-contact-form input,.afk-work-contact-form textarea{background:#111;border:1px solid rgba(255,255,255,.1);color:#fff;padding:12px;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:1rem;outline:none;transition:border-color .3s}
+    .afk-work-contact-form input:focus,.afk-work-contact-form textarea:focus{border-color:#00c3ff}
+    .afk-work-contact-form textarea{min-height:80px;resize:vertical}
+    @media(max-width:768px){
+      .afk-work-section{padding:90px 15px 30px}
+      .afk-work-tabs{gap:8px;top:60px;padding:10px 8px}
+      .afk-work-tab{font-size:.6rem;padding:6px 12px}
+      .afk-work-slider{grid-template-columns:1fr;gap:20px}
+      .afk-work-cat-title{font-size:1.2rem}
+    }
+    @media(max-width:480px){
+      .afk-work-card{min-width:260px}
+      .afk-work-cat-title{font-size:1.4rem}
+    }
+
+    /* ── BADGE (Live / Dev / Private) ── */
+    .afk-work-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 1.5px;
+      padding: 5px 12px;
+      border-radius: 2px;
+      border: 1px solid currentColor;
+      text-transform: uppercase;
+      z-index: 5;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── AUTOMATION DEMO FLOW TEXT ── */
+    .afk-work-auto-demo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      color: #00c3ff;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      padding: 9px 14px;
+      background: rgba(0, 195, 255, 0.05);
+      border: 1px solid rgba(0, 195, 255, 0.18);
+      border-left: 3px solid #00c3ff;
+      border-radius: 2px;
+    }
+
+    /* ── AUTOMATION CARD ICON HEADER ── */
+    .afk-auto-icon-header {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(0,195,255,0.07) 0%, rgba(0,0,0,0.95) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .afk-auto-icon-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, rgba(0,195,255,0.04) 0px, rgba(0,195,255,0.04) 1px, transparent 1px, transparent 32px),
+        repeating-linear-gradient(0deg,  rgba(0,195,255,0.04) 0px, rgba(0,195,255,0.04) 1px, transparent 1px, transparent 32px);
+      pointer-events: none;
+    }
+
+    /* ── ICON-WRAP INSIDE CARDS ── */
+    .afk-work-card .icon-wrap {
+      margin: 0 !important;
+      flex-shrink: 0;
+    }
+    .afk-work-card .stark-icon {
+      stroke: var(--accent-color, #00f0ff);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    /* Also ensure global .stark-icon in the icon-wrap gets the right color */
+    .icon-wrap svg.stark-icon,
+    .icon-wrap .stark-icon {
+      stroke: var(--accent-color, #00f0ff) !important;
+      fill: none;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="../css/mobile.css"/>
+<div class="grid-overlay"></div>
+<div class="vignette"></div>
+<div id="scroll-bar"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="cursor-cross-h"></div>
+<div id="cursor-cross-v"></div>
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+<div class="bg-layer"></div>
+<div class="hex-grid"></div>
+<div class="scan-global"></div>
+<div class="particles-bg"></div>
+
+<nav id="navbar">
+  <div class="nav-edge nav-edge-left"></div>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-photo-wrap">
+      <img src="../Photo-2.jpg" alt="Affan Shaikh" class="nav-photo"/>
+    </div>
+    <div class="nav-logo-text-wrap">
+      <span class="nav-logo-text">AFFAN SHAIKH</span>
+      <span class="nav-sys-status">SYS.ONLINE // V3.0</span>
+    </div>
+  </a>
+  <button class="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+<ul class="nav-links">
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="affan-marvel.html">Marvel</a></li>
+  <li><a href="media.html">Media</a></li>
+  <li><a href="projects.html" class="active">Projects</a></li>
+  <li><a href="services.html">Services</a></li>
+  <li><a href="how-i-work.html">How I Work</a></li>
+  <li><a href="achievements.html">Achievements</a></li>
+  <li><a href="experience.html">Experience</a></li>
+  <li><a href="hobbies.html">Hobbies</a></li>
+  <li><a href="travel.html">Travel</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ul>
+  <div class="nav-edge nav-edge-right"></div>
+</nav>
+
+<div class="main-content page-enter">
+  <section id="my-work" class="afk-work-section">
+    <div class="afk-work-header">
+      <div class="afk-work-header-label">SELECTED WORKS</div>
+      <h2>My Work</h2>
+      <p>Real projects. Real results. Across content, branding, automation, and web.</p>
+    </div>
+    <div class="afk-work-tabs" id="afkTabs">
+      <button class="afk-work-tab active" data-target="all">All</button>
+      <button class="afk-work-tab" data-target="media">Media &amp; YouTube</button>
+      <button class="afk-work-tab" data-target="collabs">Brand Collabs</button>
+      <button class="afk-work-tab" data-target="automation">Automation</button>
+      <button class="afk-work-tab" data-target="websites">Websites</button>
+      <button class="afk-work-tab" data-target="branding">Branding &amp; Logo</button>
+      <button class="afk-work-tab" data-target="scripts">Scripts &amp; Ideas</button>
+    </div>
+    <div id="afkContent"></div>
+  </section>
+  <footer class="stark-footer">
+  <!-- ── TOP BAR: FREELANCE STATUS ── -->
+  <div class="freelance-bar">
+    <span class="fb-pulse"></span>
+    <span class="fb-label">OPEN FOR FREELANCE WORK</span>
+    <span class="fb-divider">·</span>
+    <span class="fb-socials">Instagram DM · X</span>
+    <a href="contact.html" class="fb-hire-btn">HIRE ME</a>
+  </div>
+
+  <!-- ── MAIN FOOTER GRID ── -->
+  <div class="sf-main-grid">
+    <!-- COLUMN 1 — Brand -->
+    <div class="sf-col-brand">
+      <div class="sf-brand-id">// ID: AS-001 · NAVSARI, GUJARAT, INDIA</div>
+      <h3 class="sf-brand-name">AFFAN SHAIKH</h3>
+      <div class="sf-brand-role">Social Media Director · Web Developer · Content Creator</div>
+      <p class="sf-brand-tagline">Content that hits. Visuals that convert. Between direction and technology lies the space where I create.</p>
+      
+      <div class="sf-terminal-chip">
+        <span class="sf-chip-pulse"></span>● ONLINE · AVAILABLE FOR HIRE
+      </div>
+      
+      <div class="sf-social-icons">
+        <a href="https://instagram.com/AffanKaze" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.834a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+        </a>
+        <a href="https://in.linkedin.com/in/affan-shaikh-75a6a4233" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/AffanMarvel" target="_blank" aria-label="X">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com/@AffanMarvel" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMN 2 — Navigate -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">NAVIGATE</h4>
+      <div class="sf-links-list">
+        <a href="../index.html"><span class="sf-arrow">›</span> Home</a>
+        <a href="affan-marvel.html"><span class="sf-arrow">›</span> About</a>
+        <a href="projects.html"><span class="sf-arrow">›</span> Projects</a>
+        <a href="services.html"><span class="sf-arrow">›</span> Services</a>
+        <a href="experience.html"><span class="sf-arrow">›</span> Experience</a>
+        <a href="achievements.html"><span class="sf-arrow">›</span> Achievements</a>
+        <a href="contact.html"><span class="sf-arrow">›</span> Contact</a>
+      </div>
+    </div>
+
+    <!-- COLUMN 3 — Projects -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">PROJECTS</h4>
+      <div class="sf-links-list sf-proj-list">
+        <a href="https://affanmarvel.in" target="_blank">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AffanMarvel.in</span> <span class="sf-badge">[LIVE]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> Gym Training App</span> <span class="sf-badge">[APP]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AI Automation Suite</span> <span class="sf-badge">[AI]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> Anivel Culture</span> <span class="sf-badge">[BRAND]</span>
+        </a>
+        <a href="../index.html">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AffanKaze.in</span> <span class="sf-badge">[PORTFOLIO]</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMN 4 — Connect -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">CONNECT</h4>
+      <div class="sf-links-list sf-connect-list">
+        <a href="https://instagram.com/AffanKaze" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.834a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+          Instagram DM
+        </a>
+        <a href="https://x.com/AffanMarvel" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / Twitter
+        </a>
+        <a href="https://in.linkedin.com/in/affan-shaikh-75a6a4233" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:hello@affankaze.in">
+          <svg viewBox="0 0 24 24"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm10 8.5L2.5 5.5v12a.5.5 0 0 0 .5.5h18a.5.5 0 0 0 .5-.5v-12L12 12.5z"/></svg>
+          hello@affankaze.in
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GRADIENT DIVIDER ── -->
+  <div class="sf-grad-divider"></div>
+
+  <!-- ── BOTTOM COPYRIGHT BAR ── -->
+  <div class="sf-bot-bar">
+    <div class="sf-copy">© 2026 <span class="sf-hl">Affan Shaikh</span> · All Rights Reserved · AffanKaze.in</div>
+    <div class="sf-sys-bot">
+      <span class="fb-pulse sf-sys-pulse"></span> SYSTEM ONLINE · ALL MODULES ACTIVE
+    </div>
+  </div>
+</footer>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="afk-work-overlay" id="afkDetailOverlay">
+  <div class="afk-work-modal">
+    <button class="afk-work-modal-x" onclick="afkCloseModal('afkDetailOverlay')">&times;</button>
+    <div id="afkDetailBody"></div>
+  </div>
+</div>
+<!-- CONTACT FORM MODAL -->
+<div class="afk-work-overlay" id="afkContactOverlay">
+  <div class="afk-work-modal">
+    <button class="afk-work-modal-x" onclick="afkCloseModal('afkContactOverlay')">&times;</button>
+    <h3 style="font-family:'Orbitron',sans-serif;color:#fff;margin:0 0 5px;">Request Access</h3>
+    <p style="color:#aaa;margin-bottom:20px;font-family:'Rajdhani',sans-serif;">Fill in your details and I'll get back to you.</p>
+    <form class="afk-work-contact-form" id="afkContactForm" onsubmit="afkSubmitContact(event)">
+      <input type="text" name="name" placeholder="Name *" required/>
+      <input type="email" name="email" placeholder="Email *" required/>
+      <input type="text" name="whatsapp" placeholder="WhatsApp Number (optional)"/>
+      <textarea name="reason" placeholder="Reason (optional)"></textarea>
+      <button type="submit" class="afk-work-btn">Send Request</button>
+    </form>
+    <div id="afkContactSuccess" style="display:none;text-align:center;padding:30px 0;">
+      <p style="font-size:1.4rem;color:#00ff88;">Request sent! I'll reach out soon 🙌</p>
+    </div>
+  </div>
+</div>
+
+<script src="../js/header.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/projects-data.js"></script>
+</body>
+</html>
+
+
+

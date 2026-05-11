@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Affan Shaikh — Digital Creator & Developer</title>
+  <meta name="description" content="Affan Shaikh — Digital Creator, Web Developer & Strategist. Building digital universes from Gujarat, India."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+  /* ===== HOME SPECIFIC ===== */
+  .hero {
+    min-height: calc(100vh - 65px);
+    display: flex;
+    align-items: center;
+    padding: 0 70px;
+    gap: 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Ambient glow blobs */
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+  .blob1 { width:600px;height:600px;background:rgba(212,168,67,0.07);top:-150px;right:80px; animation:blobFloat 8s ease-in-out infinite; }
+  .blob2 { width:400px;height:400px;background:rgba(0,207,255,0.055);bottom:0;left:40%;animation:blobFloat 11s ease-in-out infinite reverse; }
+  .blob3 { width:300px;height:300px;background:rgba(192,57,43,0.04);top:20%;left:-50px;animation:blobFloat 13s ease-in-out infinite; }
+  @keyframes blobFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-30px) scale(1.06)} }
+
+  /* HERO LEFT */
+  .hero-left { flex:1; max-width:640px; z-index:1; }
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--arc);
+    letter-spacing: 3px;
+    border: 1px solid rgba(0,207,255,0.25);
+    background: rgba(0,207,255,0.06);
+    backdrop-filter: blur(10px);
+    padding: 6px 16px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease 0.2s both;
+    box-shadow: 0 0 20px rgba(0,207,255,0.08);
+  }
+  .hero-status-dot { width:6px;height:6px;background:#00ff88;border-radius:50%;box-shadow:0 0 8px #00ff88, 0 0 16px rgba(0,255,136,0.4);animation:blink 1s steps(1) infinite; }
+
+  .hero-name {
+    font-family: var(--font-hud);
+    font-size: clamp(3.2rem, 6.5vw, 6.5rem);
+    font-weight: 900;
+    letter-spacing: 3px;
+    line-height: 0.95;
+    margin-bottom: 8px;
+    animation: fadeUp 0.6s ease 0.4s both;
+    background: linear-gradient(130deg, #ffffff 0%, var(--gold-light) 35%, var(--gold) 60%, #a07020 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(212,168,67,0.3));
+  }
+  .hero-sub {
+    font-family: var(--font-hud);
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    letter-spacing: 6px;
+    color: var(--arc);
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease 0.55s both;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+  .hero-typing-wrap {
+    min-height: 36px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease 0.65s both;
+  }
+  #hero-type {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    text-shadow: 0 0 20px rgba(212,168,67,0.4);
+  }
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.85;
+    margin-bottom: 38px;
+    animation: fadeUp 0.6s ease 0.75s both;
+    max-width: 520px;
+  }
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeUp 0.6s ease 0.85s both;
+    margin-bottom: 52px;
+  }
+
+  /* STATS */
+  .hero-stats {
+    display: flex; gap: 0;
+    animation: fadeUp 0.6s ease 0.95s both;
+  }
+  .hstat {
+    padding: 18px 26px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    text-align: center;
+    position: relative;
+    transition: var(--t3);
+    overflow: hidden;
+  }
+  .hstat::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(212,168,67,0.04), transparent);
+    pointer-events: none;
+  }
+  .hstat + .hstat { border-left: none; }
+  .hstat:hover {
+    border-color: var(--gold);
+    background: rgba(212,168,67,0.08);
+    box-shadow: 0 0 40px rgba(212,168,67,0.15), var(--shadow-glass);
+    transform: translateY(-3px);
+    z-index: 1;
+  }
+  .hstat-n {
+    display: block;
+    font-family: var(--font-hud);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gold);
+    text-shadow: 0 0 20px var(--gold-glow), 0 0 40px rgba(212,168,67,0.2);
+    line-height: 1;
+  }
+  .hstat-l {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-top: 5px;
+    text-transform: uppercase;
+  }
+
+  /* HERO RIGHT — PHOTO ARC RING VISUAL */
+  .hero-right {
+    flex: 0 0 460px;
+    height: 460px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  /* Rotating rings */
+  .h-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid;
+  }
+  .h-ring-1 { width:440px;height:440px;border-color:rgba(212,168,67,0.09);animation:spinR 80s linear infinite; }
+  .h-ring-2 { width:360px;height:360px;border-color:rgba(0,207,255,0.12);animation:spinR 55s linear infinite reverse; }
+  .h-ring-3 { width:280px;height:280px;border-color:rgba(212,168,67,0.14);animation:spinR 38s linear infinite; }
+  .h-ring-4 { width:200px;height:200px;border-color:rgba(0,207,255,0.22);animation:spinR 22s linear infinite reverse; }
+  @keyframes spinR { 100%{transform:rotate(360deg)} }
+
+  /* Dots on rings */
+  .h-ring-1::before,.h-ring-2::before,.h-ring-3::before,.h-ring-4::before {
+    content:''; position:absolute; top:-4px;left:50%;
+    width:8px;height:8px;border-radius:50%;transform:translateX(-50%);
+  }
+  .h-ring-1::before { background:var(--gold);box-shadow:0 0 12px var(--gold), 0 0 24px var(--gold-glow); }
+  .h-ring-2::before { background:var(--arc);box-shadow:0 0 12px var(--arc), 0 0 24px var(--arc-glow); }
+  .h-ring-3::before { background:var(--red-bright);box-shadow:0 0 12px var(--red-bright); }
+  .h-ring-4::before { background:var(--gold-light);box-shadow:0 0 10px var(--gold-light); }
+
+  /* PROFILE PHOTO center */
+  .hero-photo-wrap {
+    width: 155px; height: 155px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5;
+  }
+  /* Outer glow ring */
+  .hero-photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--gold) 0deg,
+      var(--arc) 90deg,
+      var(--gold-light) 180deg,
+      var(--arc) 270deg,
+      var(--gold) 360deg
+    );
+    animation: spinR 20s linear infinite;
+    z-index: 0;
+    filter: blur(2px);
+    opacity: 0.8;
+  }
+  /* Inner arc overlay ring */
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,207,255,0.3);
+    animation: spinR 14s linear infinite reverse;
+  }
+  .hero-photo-bg {
+    position: absolute; inset: -2px;
+    border-radius: 50%;
+    background: var(--dark2);
+    z-index: 1;
+  }
+  .hero-photo {
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    position: relative; z-index: 2;
+    display: block;
+    border: 3px solid var(--dark);
+    box-shadow: 0 0 40px rgba(212,168,67,0.3), 0 0 80px rgba(0,207,255,0.15);
+    filter: brightness(1.05) contrast(1.05);
+  }
+  /* Scan overlay on photo */
+  .hero-photo-scan {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .hero-photo-scan::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,207,255,0.5), transparent);
+    animation: photoScan 3s linear infinite;
+    box-shadow: 0 0 20px rgba(0,207,255,0.5);
+  }
+  @keyframes photoScan {
+    0% { top: -2px; opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0.3; }
+  }
+  /* Corner HUD marks */
+  .hero-photo-hud {
+    position: absolute; inset: -18px;
+    z-index: 4; pointer-events: none;
+  }
+  .hero-photo-hud::before,
+  .hero-photo-hud::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.8;
+  }
+  .hero-photo-hud::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .hero-photo-hud::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+  /* Data labels floating */
+  .hero-data {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 2px;
+    color: var(--arc);
+    background: rgba(3,6,14,0.8);
+    border: 1px solid rgba(0,207,255,0.2);
+    padding: 4px 10px;
+    white-space: nowrap;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(0,207,255,0.1);
+  }
+  .hd1 { top: 25px; left: -90px; }
+  .hd2 { bottom: 70px; right: -75px; }
+  .hd3 { bottom: 20px; left: -70px; }
+  .hd4 { top: 70px; right: -75px; }
+
+  /* HEX ID badge */
+  .hero-hex {
+    position: absolute;
+    top: -35px; right: -25px;
+    padding: 8px 14px;
+    background: rgba(7,12,24,0.9);
+    border: 1px solid var(--gold);
+    font-family: var(--font-hud);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-shadow: 0 0 15px var(--gold-glow);
+    box-shadow: 0 0 20px rgba(212,168,67,0.2);
+    z-index: 6;
+    backdrop-filter: blur(10px);
+  }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(25px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ===== ABOUT STRIP ===== */
+  .strip {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--panel-border);
+    border-bottom: 1px solid var(--panel-border);
+    padding: 36px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,168,67,0.04);
+  }
+  .strip::before {
+    content:''; position:absolute; top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold-glow),var(--arc-glow),var(--gold-glow),transparent);
+  }
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 36px;
+    border-right: 1px solid var(--panel-border);
+    transition: var(--t3);
+  }
+  .strip-item:last-child { border-right: none; }
+  .strip-item:hover { background: rgba(212,168,67,0.03); }
+  .strip-ico { font-size: 2rem; filter: drop-shadow(0 0 12px var(--gold-glow)); }
+  .strip-title { font-family: var(--font-hud); font-size: 0.65rem; letter-spacing: 2px; color: var(--gold); }
+  .strip-sub { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); margin-top: 3px; }
+
+  /* ===== SKILLS ===== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+  }
+  .skill-card {
+    padding: 30px 26px;
+    border-radius: 4px;
+  }
+  .sk-icon {
+    font-size: 2rem; margin-bottom: 14px;
+    filter: drop-shadow(0 0 10px var(--gold-glow));
+    display: block;
+  }
+  .sk-name {
+    font-family: var(--font-hud);
+    font-size: 0.65rem; letter-spacing: 2px;
+    color: var(--text); margin-bottom: 16px;
+  }
+  .sk-track {
+    height: 2px; background: rgba(212,168,67,0.08);
+    width: 100%; margin-bottom: 6px;
+    border-radius: 1px; overflow:hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  }
+  .sk-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--arc));
+    box-shadow: 0 0 10px var(--gold-glow), 0 0 20px rgba(0,207,255,0.3);
+    transition: width 1.6s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+  }
+  .sk-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: -3px;
+    width: 6px; height: 8px;
+    background: var(--arc);
+    box-shadow: 0 0 8px var(--arc);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  }
+  .sk-pct { font-family: var(--font-mono); font-size: 0.65rem; color: var(--arc); }
+
+  /* ===== CTA ===== */
+  .cta-block {
+    text-align: center;
+    padding: 80px 50px;
+    position: relative;
+    border-radius: 4px;
+  }
+  .cta-block h2 {
+    font-family: var(--font-hud);
+    font-size: 2.8rem; font-weight: 800;
+    letter-spacing: 2px; color: var(--gold);
+    text-shadow: 0 0 40px var(--gold-glow), 0 0 80px rgba(212,168,67,0.15);
+    margin: 18px 0 14px;
+  }
+  .cta-block p { color: var(--text-dim); font-size: 1.05rem; margin-bottom: 35px; }
+  .cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  @media(max-width:1000px) {
+    .hero { flex-direction:column; text-align:center; padding: 60px 30px; }
+    .hero-right { width:300px;height:300px;flex:none; }
+    .h-ring-1{width:290px;height:290px}
+    .h-ring-2{width:230px;height:230px}
+    .h-ring-3{width:175px;height:175px}
+    .h-ring-4{width:120px;height:120px}
+    .hero-photo-wrap{width:110px;height:110px}
+    .hero-photo{width:105px;height:105px}
+    .hero-btns,.hero-stats,.hero-desc { margin-left:auto;margin-right:auto; }
+    .hero-btns,.hero-stats { justify-content:center; }
+    .hero-data { display:none; }
+    .hero-hex { top:-8px;right:0; font-size:0.5rem; }
+    .strip { flex-direction:column;gap:20px; padding:30px 24px; }
+    .strip-item { border-right:none;border-bottom:1px solid var(--panel-border);padding:0 0 20px;width:100%;justify-content:center; }
+    .strip-item:last-child{border-bottom:none;padding-bottom:0;}
+    .skills-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media(max-width:560px) { .skills-grid{grid-template-columns:1fr;} .hstat{padding:12px 18px;} }
+  </style>
+  <link rel="stylesheet" href="css/stark-terminal.css">
+  <link rel="stylesheet" href="css/hero-editorial.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/mobile.css"/>
+</head>
+<body>
+
+<!-- AMBIENT ORBS -->
+<div class="ambient-orb orb-arc"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-hex"><div class="loader-inner"></div></div>
+  <div class="loader-name">AFFAN SHAIKH</div>
+  <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  <div class="loader-status">BOOTING STARK SYSTEM...</div>
+</div>
+
+<!-- CANVAS + OVERLAYS -->
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="vignette"></div>
+<div id="scroll-bar"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="cursor-cross-h"></div>
+<div id="cursor-cross-v"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-edge nav-edge-left"></div>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-photo-wrap">
+      <img src="Photo-2.jpg" alt="Affan Shaikh" class="nav-photo"/>
+    </div>
+    <div class="nav-logo-text-wrap">
+      <span class="nav-logo-text">AFFAN SHAIKH</span>
+      <span class="nav-sys-status">SYS.ONLINE // V3.0</span>
+    </div>
+  </a>
+  <button class="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+<ul class="nav-links">
+  <li><a href="index.html" class="active">Home</a></li>
+  <li><a href="pages/affan-marvel.html">Marvel</a></li>
+  <li><a href="pages/media.html">Media</a></li>
+  <li><a href="pages/projects.html">Projects</a></li>
+  <li><a href="pages/services.html">Services</a></li>
+  <li><a href="pages/how-i-work.html">How I Work</a></li>
+  <li><a href="pages/achievements.html">Achievements</a></li>
+  <li><a href="pages/experience.html">Experience</a></li>
+  <li><a href="pages/hobbies.html">Hobbies</a></li>
+  <li><a href="pages/travel.html">Travel</a></li>
+  <li><a href="pages/contact.html">Contact</a></li>
+</ul>
+  <div class="nav-edge nav-edge-right"></div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO EDITORIAL -->
+
+
+
+  <!-- MAIN EDITORIAL HERO -->
+  <section class="hero-editorial">
+
+    <!-- Giant background word -->
+    <div class="hero-bg-word" aria-hidden="true">CREATOR</div>
+    <div class="hero-bg-word2" aria-hidden="true">SHAIKH</div>
+
+    <!-- Blob ambients (kept from original) -->
+    <div class="hero-blob blob1" data-depth="0.03"></div>
+    <div class="hero-blob blob2" data-depth="0.06"></div>
+    <div class="hero-blob blob3" data-depth="0.04"></div>
+
+    <!-- EDITORIAL PHOTO (center, full-height editorial style) -->
+    <div class="hero-ed-photo-col">
+      <div class="hero-ed-photo-frame">
+        <img src="Photo-2.jpg" alt="Affan Shaikh" class="hero-ed-photo"/>
+        <!-- HUD corners -->
+        <div class="hero-ed-hud-corner tl"></div>
+        <div class="hero-ed-hud-corner tr"></div>
+        <div class="hero-ed-hud-corner bl"></div>
+        <div class="hero-ed-hud-corner br"></div>
+      </div>
+    </div>
+
+    <!-- CONTENT GRID -->
+    <div class="hero-ed-content">
+
+      <!-- LEFT: Name + Terminal -->
+      <div class="hero-ed-left-top">
+        <div class="hero-ed-status">
+          <span class="hero-ed-status-dot"></span>
+          SYSTEM ONLINE — ALL MODULES ACTIVE
+        </div>
+        <h1 class="hero-ed-name">AFFAN<br>SHAIKH</h1>
+        <div class="hero-ed-meta">// NAVSARI, GUJARAT, INDIA</div>
+
+        <!-- Compact Stark Terminal -->
+        <div class="stark-terminal hero-ed-terminal">
+          <div class="st-bar">
+            <span class="st-dot sd1"></span><span class="st-dot sd2"></span><span class="st-dot sd3"></span>
+            <span class="st-label">JARVIS.exe — IDENTITY_MODULE v3.0</span>
+          </div>
+          <div class="st-body">
+            <div class="st-line"><span class="st-prompt">AS@stark:~$</span> <span class="st-cmd">identify --operator</span></div>
+            <div class="st-line st-out">Loading operator profile... <span class="st-ok">[OK]</span></div>
+            <div class="st-line">
+              <span class="st-prompt">ROLE:</span>
+              <span id="hero-type" class="st-role"></span>
+            </div>
+            <div class="st-line st-sub"><span class="st-prompt">STATUS:</span> <span class="st-status-val">ONLINE · AVAILABLE FOR HIRE</span></div>
+            <div class="st-cursor-line"><span class="st-prompt">AS@stark:~$</span> <span class="st-blink">█</span></div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="hero-ed-btns">
+          <a href="pages/projects.html" class="btn"><span>View Projects →</span></a>
+          <a href="pages/affan-marvel.html" class="btn btn-arc"><span>Affan Marvel</span></a>
+        </div>
+      </div>
+
+      <!-- RIGHT TOP: Tagline + HEX badge -->
+      <div class="hero-ed-right-top">
+        <div class="hero-ed-hex">ID // AS-001</div>
+        <div class="hero-ed-tagline">
+          <strong>Content that hits.</strong>
+          Visuals that convert.
+        </div>
+      </div>
+
+      <!-- RIGHT MID: HUD data labels -->
+      <div class="hero-ed-right-mid">
+        <div class="hero-ed-data">// CREATOR.EXE</div>
+        <div class="hero-ed-data">// v3.0 ACTIVE</div>
+        <div class="hero-ed-data">// ONLINE 24/7</div>
+      </div>
+
+    </div><!-- /hero-ed-content -->
+
+    <!-- BOTTOM BAR -->
+    <div class="hero-ed-bottom">
+
+      <!-- Left: Social handles -->
+      <div class="hero-ed-socials">
+        <a href="https://youtube.com/@AffanMarvel" target="_blank" class="hero-ed-soc">
+          <span class="hero-ed-soc-icon">▶</span> AffanMarvel
+        </a>
+        <a href="https://instagram.com/AffanKaze" target="_blank" class="hero-ed-soc">
+          <span class="hero-ed-soc-icon">◉</span> AffanKaze
+        </a>
+        <a href="https://affanmarvel.in" target="_blank" class="hero-ed-soc">
+          <span class="hero-ed-soc-icon">◈</span> AffanMarvel.in
+        </a>
+      </div>
+
+      <!-- Center: Stats -->
+      <div class="hero-ed-stats">
+        <div class="hero-ed-stat">
+          <span class="hero-ed-stat-n" data-count="7" data-suffix="+">0+</span>
+          <span class="hero-ed-stat-l">Years</span>
+        </div>
+        <div class="hero-ed-stat">
+          <span class="hero-ed-stat-n" data-count="100" data-suffix="+">0+</span>
+          <span class="hero-ed-stat-l">Projects</span>
+        </div>
+        <div class="hero-ed-stat">
+          <span class="hero-ed-stat-n" data-count="100" data-suffix="K+">0</span>
+          <span class="hero-ed-stat-l">Followers</span>
+        </div>
+        <div class="hero-ed-stat">
+          <span class="hero-ed-stat-n" data-count="50" data-suffix="+">0+</span>
+          <span class="hero-ed-stat-l">Clients</span>
+        </div>
+      </div>
+
+      <!-- Right: Big role title -->
+      <div class="hero-ed-role-title">
+        <div class="hero-ed-role-big">
+          DIGITAL<br>CREATOR
+          <span>// CONTENT CREATOR · DEVELOPER</span>
+        </div>
+      </div>
+
+    </div><!-- /hero-ed-bottom -->
+
+    <!-- BIO STRIP -->
+    <div class="hero-ed-bio-strip">
+      <p class="hero-ed-bio">
+        Between direction and technology lies the space where I create. From building <em>brands</em> to shaping <em>digital presence</em>,
+        my work revolves around clarity, content, and conversion. Through <span class="bio-arc">AffanMarvel.in</span> and multiple platforms,
+        I help stories find their audience — with purpose, precision, and personality.
+      </p>
+    </div>
+
+  </section><!-- /hero-editorial -->
+
+
+  <!-- STRIP -->
+  <div class="strip reveal">
+    <div class="strip-item">
+      <div class="strip-ico">
+        <div class="icon-wrap">
+          <div class="scan-line"></div>
+          <svg viewBox="0 0 48 48">
+            <path class="hud-path" d="M16 12v24l20-12-20-12z" />
+            <path class="hud-accent" d="M4 4h40v40H4z" />
+            <path class="hud-path" d="M4 12h40M4 36h40" opacity="0.4" />
+          </svg>
+        </div>
+      </div>
+      <div><div class="strip-title">DIRECTION</div><div class="strip-sub">Media · Content · Strategy</div></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-ico">
+        <div class="icon-wrap">
+          <div class="scan-line"></div>
+          <svg viewBox="0 0 48 48">
+            <path class="hud-path" d="M16 16l-8 8 8 8M32 16l8 8-8 8" />
+            <path class="hud-accent" d="M28 10l-8 28" />
+            <path class="hud-path" d="M4 8h40v32H4z" opacity="0.2" />
+          </svg>
+        </div>
+      </div>
+      <div><div class="strip-title">WEB DEVELOPMENT</div><div class="strip-sub">Sites · Apps · Automation</div></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-ico">
+        <div class="icon-wrap">
+          <div class="scan-line"></div>
+          <svg viewBox="0 0 48 48">
+            <circle class="hud-path" cx="24" cy="24" r="12" />
+            <path class="hud-accent" d="M24 12v24M12 24h24" />
+            <circle class="hud-accent" cx="24" cy="24" r="4" fill="var(--gold)" />
+          </svg>
+        </div>
+      </div>
+      <div><div class="strip-title">AI AUTOMATION</div><div class="strip-sub">50+ Systems Built</div></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-ico">
+        <div class="icon-wrap">
+          <div class="scan-line"></div>
+          <svg viewBox="0 0 48 48">
+            <circle class="hud-path" cx="24" cy="24" r="18" stroke-dasharray="10 5" />
+            <circle class="hud-path" cx="24" cy="24" r="10" />
+            <path class="hud-accent" d="M24 4v6M24 38v6M4 24h6M38 24h6" />
+          </svg>
+        </div>
+      </div>
+      <div><div class="strip-title">AFFANMARVEL.IN</div><div class="strip-sub">Live News Platform</div></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section reveal" id="about">
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="sh">
+          <div class="sh-tag">My Background</div>
+          <h2 class="sh-title">Who I am?</h2>
+          <div class="sh-line"></div>
+        </div>
+        <div class="about-card panel tilt reveal">
+          <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+          <p class="about-para">I am <strong style="color:var(--gold)">Affan Shaikh</strong> — a media professional, director, and digital creator from <span style="color:var(--arc)">Navsari, Gujarat, India</span>. Born May 14, 2002, I began my journey at age 14 in 2016 — when the internet opened up through the Jio revolution.</p>
+          <p class="about-para" style="margin-top:16px">Inspired by Marvel superheroes and the Avengers universe, I started creating story reviews and character breakdowns on YouTube. What began as a passion has grown into a multi-disciplinary career spanning direction, web development, AI automation, video production, brand growth, and digital strategy.</p>
+          <div class="about-quote">
+            "I am not just a creator — I am a builder. I build brands, audiences, systems, and stories."
+          </div>
+        </div>
+        <div class="about-tags reveal">
+          <span class="atag">📍 Navsari, Gujarat</span>
+          <span class="atag">📅 Started 2016</span>
+          <span class="atag">🎓 BCA + MCA</span>
+          <a href="https://www.google.com/search?q=Affan+Kaze" target="_blank" class="atag atag-search">🔍 Affan Kaze</a>
+          <a href="https://www.google.com/search?q=Affan+Marvel" target="_blank" class="atag atag-search">🔍 Affan Marvel</a>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="about-timeline">
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr">2016</div><div class="tl-txt">Started YouTube &amp; Marvel content journey</div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr">2018</div><div class="tl-txt">Completed 12th, began BCA — Computer Science</div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr">2020</div><div class="tl-txt">Built first React App — awarded Best React App</div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr">2021</div><div class="tl-txt">News App — Best Minor Project Award</div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr">2022</div><div class="tl-txt">BCA Best Final Project · Early AI tools adopter</div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr">2025</div><div class="tl-txt">Launched Anivel Culture e-commerce brand</div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr">2026</div><div class="tl-txt">Launched AffanMarvel.in · 50+ AI automations built</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EXPERIENCE & QUALIFICATIONS SUMMARY -->
+  <section class="section reveal" id="experience-summary">
+    <div class="sh">
+      <div class="sh-tag">My Background</div>
+      <h2 class="sh-title">Experience &amp; Qualifications</h2>
+      <div class="sh-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-left">
+        <h3 style="font-family: var(--font-hud); color: var(--gold-light); margin-bottom: 30px; font-size: 1.4rem; letter-spacing: 2px;">QUALIFICATIONS</h3>
+        <div class="about-timeline">
+          <div class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr" style="font-size: 0.9rem;">2019</div><div class="tl-txt"><strong style="color:var(--text);">10th &amp; 12th Standard</strong><br><span style="color:var(--arc); font-size:0.75rem;">Sharada Mandir Public School</span></div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr" style="font-size: 0.9rem;">2022</div><div class="tl-txt"><strong style="color:var(--text);">BCA — Bachelor of Computer Applications</strong><br><span style="color:var(--arc); font-size:0.75rem;">Naran Lala College</span></div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr" style="font-size: 0.9rem;">2025</div><div class="tl-txt"><strong style="color:var(--text);">MCA — Master of Computer Applications</strong><br><span style="color:var(--arc); font-size:0.75rem;">IGNOU Open University</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right">
+        <h3 style="font-family: var(--font-hud); color: var(--gold-light); margin-bottom: 30px; font-size: 1.4rem; letter-spacing: 2px;">WORK EXPERIENCE</h3>
+        <div class="about-timeline">
+          <div class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr" style="font-size: 0.9rem;">Nov 2022 — May 2024</div><div class="tl-txt"><strong style="color:var(--text);">Assistant Manager</strong><br><span style="color:var(--arc); font-size:0.75rem;">Jio</span></div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr" style="font-size: 0.9rem;">Jun 2024 — Sep 2025</div><div class="tl-txt"><strong style="color:var(--text);">Media Manager</strong><br><span style="color:var(--arc); font-size:0.75rem;">Adil Qadri</span></div></div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot pulse-dot"></div>
+            <div class="tl-content panel tilt"><div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div><div class="tl-yr" style="font-size: 0.9rem;">Sep 2025 — Present</div><div class="tl-txt"><strong style="color:var(--text);">Media Expert &amp; Web Developer</strong><br><span style="color:var(--arc); font-size:0.75rem;">Shish Jewel</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 60px;" class="reveal">
+      <a href="pages/experience.html" class="btn btn-arc"><span>View Full Experience &amp; Knowledge →</span></a>
+    </div>
+  </section>
+
+  <!-- WHAT I KNOW SUMMARY -->
+  <section class="section reveal" id="what-i-know-summary">
+    <div class="sh">
+      <div class="sh-tag">Knowledge Base</div>
+      <h2 class="sh-title">What I Know</h2>
+      <div class="sh-line"></div>
+    </div>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px;" class="reveal">
+      <span class="atag" style="font-size: 0.9rem; padding: 10px 20px;">Direction</span>
+      <span class="atag" style="font-size: 0.9rem; padding: 10px 20px;">Web Development</span>
+      <span class="atag" style="font-size: 0.9rem; padding: 10px 20px;">Media Manager</span>
+      <span class="atag" style="font-size: 0.9rem; padding: 10px 20px;">Editor</span>
+      <span class="atag" style="font-size: 0.9rem; padding: 10px 20px;">Designer</span>
+      <span class="atag" style="font-size: 0.9rem; padding: 10px 20px;">Growth Strategy</span>
+      <span class="atag" style="font-size: 0.9rem; padding: 10px 20px;">Content Creator</span>
+      <span class="atag" style="font-size: 0.9rem; padding: 10px 20px;">Video Producer</span>
+    </div>
+
+    <div class="proj-grid" style="margin-bottom: 40px;">
+      <div class="panel tilt reveal" style="padding: 30px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div style="font-family: var(--font-hud); font-size: 2.2rem; font-weight: 800; color: var(--arc); margin-bottom: 10px; text-shadow: 0 0 15px rgba(0,207,255,0.4);">6 <span style="font-size: 1rem; color: var(--text-dim);">years</span></div>
+        <h4 style="font-family: var(--font-hud); font-size: 1rem; color: var(--text); letter-spacing: 1px;">Web Development &amp; Related Work</h4>
+      </div>
+      <div class="panel tilt reveal" style="padding: 30px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div style="font-family: var(--font-hud); font-size: 2.2rem; font-weight: 800; color: var(--arc); margin-bottom: 10px; text-shadow: 0 0 15px rgba(0,207,255,0.4);">9 <span style="font-size: 1rem; color: var(--text-dim);">years</span></div>
+        <h4 style="font-family: var(--font-hud); font-size: 1rem; color: var(--text); letter-spacing: 1px;">Photo &amp; Video Editing</h4>
+      </div>
+      <div class="panel tilt reveal" style="padding: 30px; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div style="font-family: var(--font-hud); font-size: 2.2rem; font-weight: 800; color: var(--arc); margin-bottom: 10px; text-shadow: 0 0 15px rgba(0,207,255,0.4);">10 <span style="font-size: 1rem; color: var(--text-dim);">years</span></div>
+        <h4 style="font-family: var(--font-hud); font-size: 1rem; color: var(--text); letter-spacing: 1px;">Content &amp; Media Work</h4>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 60px;" class="reveal">
+      <a href="pages/experience.html" class="btn btn-arc"><span>View Full Knowledge Base →</span></a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section reveal" id="projects">
+    <div class="sh">
+      <div class="sh-tag">My Work</div>
+      <h2 class="sh-title">Big Projects</h2>
+      <div class="sh-line"></div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card panel tilt reveal">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div class="proj-type">WEB · NEWS PLATFORM</div>
+        <div class="proj-dot"></div>
+        <h3 class="proj-name">AFFANMARVEL.IN</h3>
+        <p class="proj-desc">Fully automated Marvel, DC, Anime &amp; Movies news site. Python + Groq AI + GitHub Actions + WordPress. Real-time Hype Button &amp; Creator Studio.</p>
+        <div class="proj-tags"><span class="ptag">Web Dev</span><span class="ptag">AI Automation</span></div>
+        <div class="proj-meta"><span>2026</span><span class="proj-live">● LIVE</span></div>
+        <a href="https://affanmarvel.in" target="_blank" class="proj-link">OPEN →</a>
+      </div>
+      <div class="proj-card panel tilt reveal">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div class="proj-type">APP · FITNESS</div>
+        <div class="proj-dot" style="background:var(--arc)"></div>
+        <h3 class="proj-name">GYM TRAINING APP</h3>
+        <p class="proj-desc">Smart gym tracking app — monitors workouts, suggests routines based on user goals, and provides personalized training plans.</p>
+        <div class="proj-tags"><span class="ptag">React</span><span class="ptag">Web App</span></div>
+        <div class="proj-meta"><span>2026</span><span style="color:var(--arc)">● BUILT</span></div>
+        <span class="proj-link" style="opacity:0.5;cursor:default">PRIVATE</span>
+      </div>
+      <div class="proj-card panel tilt reveal">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div class="proj-type">AI · AUTOMATION SUITE</div>
+        <div class="proj-dot" style="background:#9b59b6"></div>
+        <h3 class="proj-name">AI AUTOMATION SUITE</h3>
+        <p class="proj-desc">50+ personal automations: Content Refiner, Idea Finder, Thumbnail Designer, SEO Agent, Book Reader, Business Growth Advisor &amp; more.</p>
+        <div class="proj-tags"><span class="ptag">n8n</span><span class="ptag">Python</span><span class="ptag">Groq</span></div>
+        <div class="proj-meta"><span>2026</span><span style="color:#9b59b6">● EXPANDING</span></div>
+        <span class="proj-link" style="opacity:0.5;cursor:default">PRIVATE</span>
+      </div>
+      <div class="proj-card panel tilt reveal">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div class="proj-type">BUSINESS · CONFIDENTIAL</div>
+        <div class="proj-dot" style="background:var(--red-bright)"></div>
+        <h3 class="proj-name">BUSINESS DEVELOPER</h3>
+        <p class="proj-desc">Built and grew 3+ small businesses from the ground up. Details confidential by client request — results speak through growth metrics achieved.</p>
+        <div class="proj-tags"><span class="ptag">Growth</span><span class="ptag">Strategy</span></div>
+        <div class="proj-meta"><span>2025–2026</span><span style="color:var(--gold)">● ONGOING</span></div>
+        <span class="proj-link" style="opacity:0.5;cursor:default">CONFIDENTIAL</span>
+      </div>
+      <div class="proj-card panel tilt reveal">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div class="proj-type">MEDIA · DIRECTION</div>
+        <div class="proj-dot"></div>
+        <h3 class="proj-name">MEDIA DIRECTOR</h3>
+        <p class="proj-desc">Directing &amp; managing social media for personal brand and clients — content ideas, scripts, shooting guidance, and full growth strategy. Like a director on set.</p>
+        <div class="proj-tags"><span class="ptag">Direction</span><span class="ptag">Management</span></div>
+        <div class="proj-meta"><span>2016 – Present</span><span style="color:var(--gold)">● ONGOING</span></div>
+        <span class="proj-link" style="opacity:0.5;cursor:default">ONGOING</span>
+      </div>
+      <div class="proj-card panel tilt reveal">
+        <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+        <div class="proj-type">E-COMMERCE · BRAND</div>
+        <div class="proj-dot" style="background:#f0c060"></div>
+        <h3 class="proj-name">ANIVEL CULTURE</h3>
+        <p class="proj-desc">Dark luxury pop culture apparel brand. Full WooCommerce site with custom theme, WhatsApp order integration, and custom animations.</p>
+        <div class="proj-tags"><span class="ptag">WordPress</span><span class="ptag">E-Commerce</span></div>
+        <div class="proj-meta"><span>2025–2026</span><span class="proj-live">● ACTIVE</span></div>
+        <a href="https://anivelculture.in/?i=1" target="_blank" class="proj-link">OPEN →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section reveal" id="services">
+    <div class="sh">
+      <div class="sh-tag">What I Offer</div>
+      <h2 class="sh-title">Services</h2>
+      <div class="sh-line"></div>
+    </div>
+    <div class="svc-price-bar panel reveal">
+      <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+      <span style="color:var(--text-dim);font-family:var(--font-mono);font-size:.7rem;letter-spacing:2px">PRICING STARTS FROM</span>
+      <span style="color:var(--gold);font-family:var(--font-hud);font-size:1.4rem;font-weight:800">$5</span>
+      <span style="color:var(--text-dim);font-family:var(--font-mono);font-size:.7rem;letter-spacing:2px">UP TO</span>
+      <span style="color:var(--arc);font-family:var(--font-hud);font-size:1.4rem;font-weight:800">$500+</span>
+      <span style="color:var(--text-dim);font-family:var(--font-mono);font-size:.65rem;letter-spacing:1px">80% custom-quoted · Contact via WhatsApp or DM</span>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="svc-ico"><div class="icon-wrap"><svg viewBox="0 0 48 48"><path class="hud-path" d="M16 16l-8 8 8 8M32 16l8 8-8 8" /><path class="hud-accent" d="M28 10l-8 28" /></svg></div></div><div class="svc-name">Web Development</div></div>
+      <div class="svc-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="svc-ico"><div class="icon-wrap"><svg viewBox="0 0 48 48"><path class="hud-path" d="M12 12l24 24M12 36l24-24" /><circle class="hud-accent" cx="12" cy="12" r="4" /><circle class="hud-accent" cx="12" cy="36" r="4" /></svg></div></div><div class="svc-name">Video Editing</div></div>
+      <div class="svc-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="svc-ico"><div class="icon-wrap"><svg viewBox="0 0 48 48"><path class="hud-path" d="M24 12L8 24l16 12 16-12-16-12z" /><path class="hud-accent" d="M24 4v8M24 36v8M4 24h8M36 24h4" /></svg></div></div><div class="svc-name">Full Media Management</div></div>
+      <div class="svc-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="svc-ico"><div class="icon-wrap"><svg viewBox="0 0 48 48"><path class="hud-path" d="M12 40V12h24v28M8 8h32M24 12v28" /><path class="hud-accent" d="M16 18h16M16 24h16M16 30h16" /></svg></div></div><div class="svc-name">Full Branding Package</div></div>
+      <div class="svc-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="svc-ico"><div class="icon-wrap"><svg viewBox="0 0 48 48"><path class="hud-path" d="M8 40V8M8 40h32" /><path class="hud-path" d="M8 32l10-10 8 8 14-14" /><path class="hud-accent" d="M30 16h10v10" /></svg></div></div><div class="svc-name">Market Growth Strategy</div></div>
+      <div class="svc-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="svc-ico"><div class="icon-wrap"><svg viewBox="0 0 48 48"><path class="hud-path" d="M16 12v24l20-12-20-12z" /><path class="hud-accent" d="M4 4h40v40H4z" /></svg></div></div><div class="svc-name">Direction (Video/Content)</div></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;" class="reveal">
+      <a href="pages/services.html" class="btn btn-arc"><span>View All Services →</span></a>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="section reveal" id="achievements">
+    <div class="sh">
+      <div class="sh-tag">Track Record</div>
+      <h2 class="sh-title">Achievements</h2>
+      <div class="sh-line"></div>
+    </div>
+    <div class="ach-stats reveal">
+      <div class="ach-stat panel"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><span class="ach-n" data-count="100" data-suffix="K+">0</span><span class="ach-l">Total Followers</span></div>
+      <div class="ach-stat panel"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><span class="ach-n" data-count="100" data-suffix="+">0</span><span class="ach-l">Projects Done</span></div>
+      <div class="ach-stat panel"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><span class="ach-n" data-count="50" data-suffix="+">0</span><span class="ach-l">Clients Served</span></div>
+      <div class="ach-stat panel"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><span class="ach-n" data-count="7" data-suffix="+">0</span><span class="ach-l">Years Experience</span></div>
+      <div class="ach-stat panel"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><span class="ach-n" data-count="50" data-suffix="+">0</span><span class="ach-l">AI Automations</span></div>
+      <div class="ach-stat panel"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><span class="ach-n" data-count="3" data-suffix="+">0</span><span class="ach-l">Businesses Built</span></div>
+    </div>
+    <div class="ach-awards reveal">
+      <div class="sh" style="margin-top:50px;margin-bottom:30px"><div class="sh-tag">Academic</div><h3 class="sh-title" style="font-size:1.8rem">Awards &amp; Recognition</h3><div class="sh-line"></div></div>
+      <div class="awards-grid">
+        <!-- 2016 Sports -->
+        <div class="award-card panel tilt reveal">
+          <div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div>
+          <div class="award-header">
+            <div class="award-ico gold"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+            <div class="award-yr-badge">2016</div>
+          </div>
+          <h4 class="award-title">Kabaddi &amp; Running Champion</h4>
+          <p class="award-desc">School Level Kabaddi Champion &amp; 1st Place in Running Event.</p>
+        </div>
+
+        <!-- 2016 Speech -->
+        <div class="award-card panel tilt reveal">
+          <div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div>
+          <div class="award-header">
+            <div class="award-ico"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></div>
+            <div class="award-yr-badge">2016</div>
+          </div>
+          <h4 class="award-title">Speech Competition</h4>
+          <p class="award-desc">1st Place in Local Speech Competition.</p>
+        </div>
+
+        <!-- 2017 Speech -->
+        <div class="award-card panel tilt reveal">
+          <div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div>
+          <div class="award-header">
+            <div class="award-ico"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></div>
+            <div class="award-yr-badge">2017</div>
+          </div>
+          <h4 class="award-title">English Speech Competition</h4>
+          <p class="award-desc">3rd Place in Regional English Speech Competition.</p>
+        </div>
+
+        <!-- 2018 Academic -->
+        <div class="award-card panel tilt reveal">
+          <div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div>
+          <div class="award-header">
+            <div class="award-ico purple"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+            <div class="award-yr-badge">2018</div>
+          </div>
+          <h4 class="award-title">Academic Excellence</h4>
+          <p class="award-desc">Best Computer Program · Gita Quiz Winner · Debate Champion.</p>
+        </div>
+
+        <!-- 2020 React -->
+        <div class="award-card panel tilt reveal">
+          <div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div>
+          <div class="award-header">
+            <div class="award-ico"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <div class="award-yr-badge">2020</div>
+          </div>
+          <h4 class="award-title">Best React App</h4>
+          <p class="award-desc">College Award for outstanding React Application Development.</p>
+        </div>
+
+        <!-- 2021 News App -->
+        <div class="award-card panel tilt reveal">
+          <div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div>
+          <div class="award-header">
+            <div class="award-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div class="award-yr-badge">2021</div>
+          </div>
+          <h4 class="award-title">Best Minor Project</h4>
+          <p class="award-desc">College Award for developing a functional News Application.</p>
+        </div>
+
+        <!-- 2022 Final Project -->
+        <div class="award-card panel tilt reveal">
+          <div class="c tl"></div><div class="c tr"></div><div class="c br"></div><div class="c bl"></div>
+          <div class="award-header">
+            <div class="award-ico gold"><svg viewBox="0 0 24 24"><path d="M12 2l3 5h-6z"/><path d="M12 22v-5"/><path d="M5 12l7-5 7 5"/><path d="M5 12v5a7 7 0 0 0 14 0v-5"/></svg></div>
+            <div class="award-yr-badge">2022</div>
+          </div>
+          <h4 class="award-title">Best Final Project</h4>
+          <p class="award-desc">Top College Award for Final Year Project &amp; 10+ Gujarat Running Certificates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section reveal" id="skills">
+    <div class="sh">
+      <div class="sh-tag">Expertise</div>
+      <h2 class="sh-title">Core Systems</h2>
+      <div class="sh-line"></div>
+    </div>
+    <div class="skills-grid" id="skills-grid">
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><path class="hud-path" d="M16 12v24l20-12-20-12z" /><path class="hud-accent" d="M4 4h40v40H4z" /></svg></div></div><div class="sk-name">DIRECTION</div><div class="sk-badge">MASTER</div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><path class="hud-path" d="M12 40h24M12 8h24M8 12v24M40 12v24" opacity="0.3" /><path class="hud-path" d="M16 24h16M24 16v16" /><path class="hud-accent" d="M4 4l8 8M44 4l-8 8M4 44l8-8M44 44l-8-8" /></svg></div></div><div class="sk-name">CONTENT CREATION</div><div class="sk-badge">MASTER</div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><circle class="hud-path" cx="24" cy="24" r="12" /><path class="hud-accent" d="M24 12v24M12 24h24" /><circle class="hud-accent" cx="24" cy="24" r="4" fill="var(--gold)" /></svg></div></div><div class="sk-name">AI AUTOMATION</div><div class="sk-badge">EXPERT</div><div class="sk-track"><div class="sk-fill" data-w="82"></div></div></div>
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><path class="hud-path" d="M16 16l-8 8 8 8M32 16l8 8-8 8" /><path class="hud-accent" d="M28 10l-8 28" /></svg></div></div><div class="sk-name">WEB DEVELOPMENT</div><div class="sk-badge">EXPERT</div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><path class="hud-path" d="M12 12l24 24M12 36l24-24" /><circle class="hud-accent" cx="12" cy="12" r="4" /><circle class="hud-accent" cx="12" cy="36" r="4" /></svg></div></div><div class="sk-name">VIDEO EDITING</div><div class="sk-badge">ADVANCED</div><div class="sk-track"><div class="sk-fill" data-w="70"></div></div></div>
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><path class="hud-path" d="M8 40V8M8 40h32" /><path class="hud-path" d="M8 32l10-10 8 8 14-14" /><path class="hud-accent" d="M30 16h10v10" /></svg></div></div><div class="sk-name">GROWTH STRATEGY</div><div class="sk-badge">ADVANCED</div><div class="sk-track"><div class="sk-fill" data-w="70"></div></div></div>
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><path class="hud-path" d="M28 4L14 26h10l-4 18 14-22h-10L28 4z" /><circle class="hud-accent" cx="24" cy="24" r="18" stroke-dasharray="2 6" /></svg></div></div><div class="sk-name">PROMPT ENGINEERING</div><div class="sk-badge">EXPERT</div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><path class="hud-path" d="M24 8c-6.6 0-12 5.4-12 12 0 4.4 2.4 8.2 6 10.2V36h12v-5.8c3.6-2 6-5.8 6-10.2 0-6.6-5.4-12-12-12z" /><path class="hud-accent" d="M18 40h12M20 44h8" /></svg></div></div><div class="sk-name">IDEA FINDING</div><div class="sk-badge">EXPERT</div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
+      <div class="skill-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="sk-icon"><div class="icon-wrap"><div class="scan-line"></div><svg viewBox="0 0 48 48"><path class="hud-path" d="M12 12h24M12 24h24M12 36h16" /><path class="hud-accent" d="M4 8v32l8-8h28V8H4z" /></svg></div></div><div class="sk-name">COMMUNICATION</div><div class="sk-badge">ADVANCED</div><div class="sk-track"><div class="sk-fill" data-w="75"></div></div></div>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section class="section reveal" id="hobbies">
+    <div class="sh">
+      <div class="sh-tag">Beyond Work</div>
+      <h2 class="sh-title">Hobbies &amp; Personality</h2>
+      <div class="sh-line"></div>
+    </div>
+    <div class="hobby-quote panel reveal" style="padding:28px 36px;margin-bottom:36px;font-style:italic;color:var(--gold-light);font-size:1.05rem;line-height:1.8">
+      <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+      <p style="margin:0;">"I am a normal human with an extraordinary drive. My world lives at the intersection of pop culture, technology, and creativity. I don't just consume media — I create it, direct it, and build systems around it."</p>
+    </div>
+    <div class="hobby-grid">
+      <div class="hobby-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="hobby-ico"><div class="icon-wrap" style="--sz:48px"><svg viewBox="0 0 48 48"><path class="hud-path" d="M12 12h24v24H12z" /><path class="hud-accent" d="M16 12v24M32 12v24M12 18h24" /></svg></div></div><div class="hobby-name">Reading Books</div><div class="hobby-sub">Personal book collection</div></div>
+      <div class="hobby-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="hobby-ico"><div class="icon-wrap" style="--sz:48px"><svg viewBox="0 0 48 48"><path class="hud-path" d="M16 12v24l20-12-20-12z" /><path class="hud-accent" d="M4 4h40v40H4z" /></svg></div></div><div class="hobby-name">Movies &amp; Anime</div><div class="hobby-sub">Series, films, deep dives</div></div>
+      <div class="hobby-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="hobby-ico"><div class="icon-wrap" style="--sz:48px"><svg viewBox="0 0 48 48"><path class="hud-path" d="M10 24h28M30 16l8 8-8 8" /><path class="hud-accent" d="M38 12v24M42 20v8" /></svg></div></div><div class="hobby-name">Travel</div><div class="hobby-sub">Exploring new places</div></div>
+      <div class="hobby-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="hobby-ico"><div class="icon-wrap" style="--sz:48px"><svg viewBox="0 0 48 48"><path class="hud-path" d="M24 4l4 12h12l-10 8 4 12-10-8-10 8 4-12-10-8h12z" /><path class="hud-accent" d="M24 16v16" opacity="0.4" /></svg></div></div><div class="hobby-name">Reviewing</div><div class="hobby-sub">Movies, gadgets, media</div></div>
+      <div class="hobby-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="hobby-ico"><div class="icon-wrap" style="--sz:48px"><svg viewBox="0 0 48 48"><path class="hud-path" d="M12 12h24M12 24h24M12 36h16" /><path class="hud-accent" d="M4 8v32l8-8h28V8H4z" /></svg></div></div><div class="hobby-name">Script Writing</div><div class="hobby-sub">Stories, ideas, concepts</div></div>
+      <div class="hobby-card panel tilt reveal"><div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div><div class="hobby-ico"><div class="icon-wrap" style="--sz:48px"><svg viewBox="0 0 48 48"><circle class="hud-path" cx="24" cy="24" r="12" /><path class="hud-accent" d="M24 12v24M12 24h24" /><circle class="hud-accent" cx="24" cy="24" r="4" fill="var(--gold)" /></svg></div></div><div class="hobby-name">AI Exploration</div><div class="hobby-sub">New tools, new systems</div></div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 60px;" class="reveal">
+      <a href="pages/hobbies.html" class="btn btn-arc"><span>View Full Hobbies →</span></a>
+    </div>
+  </section>
+
+
+
+  <!-- CELEBRITY PANEL TEASER -->
+  <section class="section reveal" id="celebrity">
+    <div class="sh">
+      <div class="sh-tag">Network</div>
+      <h2 class="sh-title">Notable Connections</h2>
+      <div class="sh-line"></div>
+    </div>
+    
+    <a href="pages/achievements.html#celeb-section" class="celebrity-teaser-link" style="display: block; position: relative; border-radius: 12px; overflow: hidden; text-decoration: none; cursor: pointer;">
+      <div class="panel" style="padding: 40px; position: relative; overflow: hidden; border: 1px solid rgba(0,207,255,0.2);">
+        <!-- Blurry Grid Background -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; filter: blur(1.5px) grayscale(10%); opacity: 0.8; pointer-events: none; user-select: none;">
+          <div style="aspect-ratio: 1/1; background: #222; border-radius: 8px; overflow: hidden; border: 1px solid rgba(164,123,255,0.2);">
+            <img src="Image/Fesu.jpg" style="width: 100%; height: 70%; object-fit: cover;">
+            <div style="padding: 10px;"><div style="width: 60%; height: 10px; background: #444; margin-bottom: 5px; border-radius: 2px;"></div><div style="width: 80%; height: 8px; background: #333; border-radius: 2px;"></div></div>
+          </div>
+          <div style="aspect-ratio: 1/1; background: #222; border-radius: 8px; overflow: hidden; border: 1px solid rgba(164,123,255,0.2);">
+            <img src="Image/Adil.jpg" style="width: 100%; height: 70%; object-fit: cover;">
+            <div style="padding: 10px;"><div style="width: 60%; height: 10px; background: #444; margin-bottom: 5px; border-radius: 2px;"></div><div style="width: 80%; height: 8px; background: #333; border-radius: 2px;"></div></div>
+          </div>
+          <div style="aspect-ratio: 1/1; background: #222; border-radius: 8px; overflow: hidden; border: 1px solid rgba(164,123,255,0.2);">
+            <img src="Image/Shihab.jpg" style="width: 100%; height: 70%; object-fit: cover;">
+            <div style="padding: 10px;"><div style="width: 60%; height: 10px; background: #444; margin-bottom: 5px; border-radius: 2px;"></div><div style="width: 80%; height: 8px; background: #333; border-radius: 2px;"></div></div>
+          </div>
+          <div style="aspect-ratio: 1/1; background: #222; border-radius: 8px; overflow: hidden; border: 1px solid rgba(164,123,255,0.2);">
+            <img src="Image/chetansingh.jpg" style="width: 100%; height: 70%; object-fit: cover;">
+            <div style="padding: 10px;"><div style="width: 60%; height: 10px; background: #444; margin-bottom: 5px; border-radius: 2px;"></div><div style="width: 80%; height: 8px; background: #333; border-radius: 2px;"></div></div>
+          </div>
+        </div>
+        
+        <!-- Overlay CTA -->
+        <div style="position: absolute; inset: 0; background: rgba(5,5,8,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; transition: background 0.3s;">
+          <div class="c tl"></div><div class="c tr"></div><div class="c bl"></div><div class="c br"></div>
+          <div class="hud-badge" style="margin-bottom: 15px;">RESTRICTED ACCESS</div>
+          <h2 style="font-family:var(--font-hud);font-size:2.5rem;font-weight:800;color:var(--gold);text-shadow:0 0 40px var(--gold-glow);margin:0 0 10px; text-transform: uppercase;">Notable Connections</h2>
+          <p style="color:var(--text-dim);font-family:var(--font-mono);font-size:0.9rem;letter-spacing:2px; margin-bottom: 30px; text-align: center;">CLICK TO DECRYPT IDENTITIES &amp; VIEW RECORDS</p>
+          <div class="btn btn-arc" style="pointer-events: none;">
+            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> UNLOCK SECTION</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact" style="padding-top: 40px; margin-bottom: 40px;">
+    <div class="cta-block panel tilt scan-wrap reveal" style="padding: 70px 40px; text-align: center; background: linear-gradient(135deg, rgba(0,207,255,0.05) 0%, rgba(0,0,0,0) 100%); border-top: 2px solid var(--arc); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <div class="scan-line"></div>
+      <div class="c tl" style="border-color: var(--arc);"></div><div class="c tr"></div><div class="c bl"></div><div class="c br" style="border-color: var(--arc);"></div>
+      
+      <!-- Background Graphic -->
+      <svg style="position: absolute; top: -100px; right: -50px; width: 400px; height: 400px; opacity: 0.03; pointer-events: none;" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="var(--arc)" stroke-width="0.5" stroke-dasharray="2 4"/>
+        <circle cx="50" cy="50" r="30" fill="none" stroke="var(--arc)" stroke-width="1"/>
+      </svg>
+      
+      <div class="hud-badge" style="background: rgba(0,207,255,0.1); color: var(--arc); border-color: rgba(0,207,255,0.3); margin-bottom: 24px; padding: 6px 16px;">READY TO WORK?</div>
+      
+      <h2 style="font-family: var(--font-hud); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: #fff; margin-bottom: 20px; line-height: 1.3; text-shadow: 0 0 40px rgba(255,255,255,0.1); max-width: 800px; text-transform: uppercase;">
+        "I'm not the guy you call for a simple job.<br>
+        <span style="color: var(--arc);">I'm the guy you call when you want it done right."</span>
+      </h2>
+      
+      <p style="color:var(--text-dim); font-family:var(--font-mono); font-size:.85rem; letter-spacing:3px; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <span style="width: 40px; height: 1px; background: var(--gold-dark); display: inline-block;"></span>
+        AFFAN SHAIKH · ONE MESSAGE AWAY
+        <span style="width: 40px; height: 1px; background: var(--gold-dark); display: inline-block;"></span>
+      </p>
+      
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;">
+        <a href="https://instagram.com/AffanKaze" target="_blank" style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); background: rgba(255,255,255,0.03); padding: 8px 16px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='#E1306C'; this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-dim)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Instagram DM
+        </a>
+        <a href="https://x.com/AffanMarvel" target="_blank" style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); background: rgba(255,255,255,0.03); padding: 8px 16px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='#1DA1F2'; this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-dim)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1DA1F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg> X (Twitter)
+        </a>
+        <a href="https://in.linkedin.com/in/affan-shaikh-75a6a4233" target="_blank" style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); background: rgba(255,255,255,0.03); padding: 8px 16px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='#0077b5'; this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-dim)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077b5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> LinkedIn
+        </a>
+      </div>
+      
+      <div class="cta-btns" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+        <a href="pages/contact.html" class="btn btn-arc" style="padding: 16px 36px; font-size: 1.1rem; box-shadow: 0 0 30px rgba(0,207,255,0.4); border: 1px solid var(--arc);">
+          <span style="display: flex; align-items: center; gap: 10px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> 
+            Let's Connect
+          </span>
+        </a>
+        <a href="pages/services.html" class="btn" style="padding: 16px 36px; font-size: 1.1rem; border: 1px solid rgba(255,255,255,0.2);">
+          <span style="display: flex; align-items: center; gap: 10px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg> 
+            View Services
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="stark-footer">
+  <!-- ── TOP BAR: FREELANCE STATUS ── -->
+  <div class="freelance-bar">
+    <span class="fb-pulse"></span>
+    <span class="fb-label">OPEN FOR FREELANCE WORK</span>
+    <span class="fb-divider">·</span>
+    <span class="fb-socials">Instagram DM · X</span>
+    <a href="pages/contact.html" class="fb-hire-btn">HIRE ME</a>
+  </div>
+
+  <!-- ── MAIN FOOTER GRID ── -->
+  <div class="sf-main-grid">
+    <!-- COLUMN 1 — Brand -->
+    <div class="sf-col-brand">
+      <div class="sf-brand-id">// ID: AS-001 · NAVSARI, GUJARAT, INDIA</div>
+      <h3 class="sf-brand-name">AFFAN SHAIKH</h3>
+      <div class="sf-brand-role">Social Media Director · Web Developer · Content Creator</div>
+      <p class="sf-brand-tagline">Content that hits. Visuals that convert. Between direction and technology lies the space where I create.</p>
+      
+      <div class="sf-terminal-chip">
+        <span class="sf-chip-pulse"></span>● ONLINE · AVAILABLE FOR HIRE
+      </div>
+      
+      <div class="sf-social-icons">
+        <a href="https://instagram.com/AffanKaze" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.834a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+        </a>
+        <a href="https://in.linkedin.com/in/affan-shaikh-75a6a4233" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/AffanMarvel" target="_blank" aria-label="X">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://youtube.com/@AffanMarvel" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMN 2 — Navigate -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">NAVIGATE</h4>
+      <div class="sf-links-list">
+        <a href="index.html"><span class="sf-arrow">›</span> Home</a>
+        <a href="pages/affan-marvel.html"><span class="sf-arrow">›</span> About</a>
+        <a href="pages/projects.html"><span class="sf-arrow">›</span> Projects</a>
+        <a href="pages/services.html"><span class="sf-arrow">›</span> Services</a>
+        <a href="pages/experience.html"><span class="sf-arrow">›</span> Experience</a>
+        <a href="pages/achievements.html"><span class="sf-arrow">›</span> Achievements</a>
+        <a href="pages/contact.html"><span class="sf-arrow">›</span> Contact</a>
+      </div>
+    </div>
+
+    <!-- COLUMN 3 — Projects -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">PROJECTS</h4>
+      <div class="sf-links-list sf-proj-list">
+        <a href="https://affanmarvel.in" target="_blank">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AffanMarvel.in</span> <span class="sf-badge">[LIVE]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> Gym Training App</span> <span class="sf-badge">[APP]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AI Automation Suite</span> <span class="sf-badge">[AI]</span>
+        </a>
+        <a href="#">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> Anivel Culture</span> <span class="sf-badge">[BRAND]</span>
+        </a>
+        <a href="index.html">
+          <span class="sf-proj-wrap"><span class="sf-arrow">›</span> AffanKaze.in</span> <span class="sf-badge">[PORTFOLIO]</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMN 4 — Connect -->
+    <div class="sf-col-nav">
+      <h4 class="sf-header">CONNECT</h4>
+      <div class="sf-links-list sf-connect-list">
+        <a href="https://instagram.com/AffanKaze" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.834a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+          Instagram DM
+        </a>
+        <a href="https://x.com/AffanMarvel" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X / Twitter
+        </a>
+        <a href="https://in.linkedin.com/in/affan-shaikh-75a6a4233" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:hello@affankaze.in">
+          <svg viewBox="0 0 24 24"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm10 8.5L2.5 5.5v12a.5.5 0 0 0 .5.5h18a.5.5 0 0 0 .5-.5v-12L12 12.5z"/></svg>
+          hello@affankaze.in
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GRADIENT DIVIDER ── -->
+  <div class="sf-grad-divider"></div>
+
+  <!-- ── BOTTOM COPYRIGHT BAR ── -->
+  <div class="sf-bot-bar">
+    <div class="sf-copy">© 2026 <span class="sf-hl">Affan Shaikh</span> · All Rights Reserved · AffanKaze.in</div>
+    <div class="sf-sys-bot">
+      <span class="fb-pulse sf-sys-pulse"></span> SYSTEM ONLINE · ALL MODULES ACTIVE
+    </div>
+  </div>
+</footer>
+
+</div>
+
+
+<script src="js/header.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Stark Terminal Typing with typing animation visible
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const el = document.getElementById('hero-type');
+      if (el) {
+        // We do NOT remove the default border right, so the typing cursor shows.
+        typeText(el, [
+          'Social Media Manager',
+          'Director & Content Creator',
+          'Content Creator & YouTuber',
+          'Web Developer & Builder',
+          'AI Automation Expert',
+          'Media Manager & Strategist',
+          'Video Producer & Editor',
+          'Social Media Director',
+          'Growth & Brand Strategist',
+          'Photographer & Designer'
+        ], 90, 3200);
+      }
+    }, 2400);
+  });
+
+  // Skill bars on scroll
+  const sg = document.getElementById('skills-grid');
+  if (sg) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        sg.querySelectorAll('.sk-fill').forEach(b => {
+          setTimeout(() => b.style.width = b.dataset.w + '%', 100);
+        });
+      }
+    }, { threshold: 0.2 }).observe(sg);
+  }
+</script>
+</body>
+</html>
+
+
+

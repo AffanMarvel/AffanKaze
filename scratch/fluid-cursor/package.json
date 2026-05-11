@@ -1,0 +1,27 @@
+{
+  "name": "@scxr-dev/fluid-cursor",
+  "version": "3.1.0",
+  "description": "A high-performance, professional fluid simulation cursor effect for the web.",
+  "main": "fluid-cursor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cursor",
+    "fluid",
+    "webgl",
+    "animation",
+    "react",
+    "mouse-effect"
+  ],
+  "author": "R H A Ashan Imalka (scxr-dev)",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "homepage": "https://github.com/scxr-dev/fluid-cursor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scxr-dev/fluid-cursor.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

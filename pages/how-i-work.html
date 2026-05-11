@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How I Work — Affan Shaikh</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .hiw-hero{padding:90px 60px 40px;max-width:900px}
+    .hiw-stats{display:flex;gap:40px;margin-top:35px;flex-wrap:wrap}
+    .hiw-stat-num{font-family:var(--font-hud);font-size:2.8rem;color:var(--gold);display:block;line-height:1}
+    .hiw-stat-lbl{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-2);letter-spacing:2px;margin-top:5px;display:block}
+
+    /* PHASE MENU TABS */
+    .phase-menu{display:flex;gap:0;padding:0 60px;border-bottom:1px solid rgba(212,168,67,0.15);overflow-x:auto;scrollbar-width:none;background:rgba(0,0,0,0.2)}
+    .phase-menu::-webkit-scrollbar{display:none}
+    .phase-tab{flex-shrink:0;padding:22px 32px;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.25s;position:relative;user-select:none;background:transparent}
+    .phase-tab-num{font-family:var(--font-hud);font-size:0.55rem;letter-spacing:3px;display:block;margin-bottom:5px;color:rgba(255,255,255,0.3);transition:color 0.25s}
+    .phase-tab-name{font-family:var(--font-hud);font-size:0.72rem;letter-spacing:2px;color:rgba(255,255,255,0.45);transition:color 0.25s;display:block;white-space:nowrap}
+    .phase-tab-count{font-family:var(--font-mono);font-size:0.5rem;color:rgba(255,255,255,0.25);display:block;margin-top:4px;transition:all 0.25s}
+    .phase-tab.active{background:rgba(255,255,255,0.03);border-bottom-color:var(--tc,#d4a843)}
+    .phase-tab.active .phase-tab-num{color:var(--tc,#d4a843)}
+    .phase-tab.active .phase-tab-name{color:#fff}
+    .phase-tab.active .phase-tab-count{color:var(--tc,#d4a843);opacity:1}
+    .phase-tab:not(.active):hover .phase-tab-name{color:rgba(255,255,255,0.7)}
+    .phase-tab:not(.active):hover .phase-tab-num{color:var(--tc,#d4a843)}
+
+    /* PHASE CONTENT */
+    .phase-panels{padding:0 60px 80px;max-width:1300px;margin:0 auto}
+    .phase-panel{display:none;animation:fadeUp 0.35s ease}
+    .phase-panel.active{display:block}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+    .panel-header{padding:42px 0 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .panel-phase-badge{font-family:var(--font-hud);font-size:0.62rem;letter-spacing:3px;padding:8px 18px;border:1px solid currentColor;border-radius:2px;flex-shrink:0}
+    .panel-phase-title{font-family:var(--font-hud);font-size:1.4rem;letter-spacing:4px;color:#fff;flex-shrink:0}
+    .panel-line{flex:1;height:1px;opacity:0.18;min-width:40px}
+    .panel-step-total{font-family:var(--font-mono);font-size:0.6rem;color:rgba(255,255,255,0.3);letter-spacing:2px;flex-shrink:0}
+
+    /* ── SOLID STEP CARDS ── */
+    .steps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+
+    .step-card{
+      background:#0d0d12;
+      border:1px solid rgba(255,255,255,0.09);
+      border-left:4px solid var(--pc,#d4a843);
+      border-radius:0 6px 6px 0;
+      padding:26px 26px 22px;
+      position:relative;
+      overflow:hidden;
+      transition:transform 0.25s, box-shadow 0.25s, background 0.25s, border-color 0.25s;
+      cursor:default;
+    }
+    /* Subtle inner glow strip at top */
+    .step-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:4px;right:0;
+      height:1px;
+      background:linear-gradient(90deg, var(--pc,#d4a843), transparent);
+      opacity:0.4;
+      transition:opacity 0.25s;
+    }
+    /* HUD corner */
+    .step-card::after{
+      content:'';
+      position:absolute;
+      bottom:10px;right:10px;
+      width:16px;height:16px;
+      border-bottom:1px solid var(--pc,#d4a843);
+      border-right:1px solid var(--pc,#d4a843);
+      opacity:0.18;
+      transition:opacity 0.25s;
+    }
+    .step-card:hover{
+      background:#111118;
+      border-color:rgba(255,255,255,0.16);
+      border-left-color:var(--pc,#d4a843);
+      transform:translateY(-4px) translateX(2px);
+      box-shadow:0 12px 40px rgba(0,0,0,0.5), -2px 0 20px var(--pg,rgba(212,168,67,0.12));
+    }
+    .step-card:hover::before{opacity:0.8}
+    .step-card:hover::after{opacity:0.45}
+
+    /* Big faded step number watermark */
+    .card-step-num{
+      font-family:var(--font-hud);
+      font-size:3.5rem;
+      color:var(--pc,#d4a843);
+      opacity:0.07;
+      position:absolute;
+      top:10px;right:18px;
+      line-height:1;
+      transition:opacity 0.25s;
+      pointer-events:none;
+    }
+    .step-card:hover .card-step-num{opacity:0.13}
+
+    /* Badge row */
+    .card-top-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .card-badge{
+      font-family:var(--font-mono);
+      font-size:0.5rem;
+      letter-spacing:2px;
+      color:var(--pc,#d4a843);
+      background:rgba(255,255,255,0.04);
+      border:1px solid var(--pc,#d4a843);
+      border-radius:2px;
+      padding:3px 9px;
+      opacity:0.85;
+    }
+    .card-step-label{font-family:var(--font-mono);font-size:0.5rem;color:rgba(255,255,255,0.25);letter-spacing:1px}
+
+    .card-title{
+      font-family:var(--font-hud);
+      font-size:0.82rem;
+      letter-spacing:1.8px;
+      color:#e8e8e8;
+      margin:0 0 11px;
+      transition:color 0.25s;
+      line-height:1.4;
+      padding-right:30px;
+    }
+    .step-card:hover .card-title{color:var(--pc,#d4a843)}
+
+    .card-desc{
+      font-size:0.83rem;
+      color:rgba(255,255,255,0.45);
+      line-height:1.75;
+      margin:0;
+    }
+
+    @media(max-width:768px){
+      .hiw-hero,.phase-menu,.phase-panels{padding-left:18px;padding-right:18px}
+      .phase-tab{padding:16px 14px}
+      .phase-tab-name{font-size:0.6rem}
+      .steps-grid{grid-template-columns:1fr}
+      .panel-phase-title{font-size:1rem}
+      .hiw-stats{gap:22px}
+    }
+  </style>
+
+  <link rel="stylesheet" href="../css/mobile.css"/>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div><div class="vignette"></div>
+<div id="scroll-bar"></div>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+<div id="cursor-cross-h"></div><div id="cursor-cross-v"></div>
+<nav id="navbar">
+  <div class="nav-edge nav-edge-left"></div>
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-photo-wrap">
+      <img src="../Photo-2.jpg" alt="Affan Shaikh" class="nav-photo"/>
+    </div>
+    <div class="nav-logo-text-wrap">
+      <span class="nav-logo-text">AFFAN SHAIKH</span>
+      <span class="nav-sys-status">SYS.ONLINE // V3.0</span>
+    </div>
+  </a>
+  <button class="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+<ul class="nav-links">
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="affan-marvel.html">Marvel</a></li>
+  <li><a href="media.html">Media</a></li>
+  <li><a href="projects.html">Projects</a></li>
+  <li><a href="services.html">Services</a></li>
+  <li><a href="how-i-work.html" class="active">How I Work</a></li>
+  <li><a href="achievements.html">Achievements</a></li>
+  <li><a href="experience.html">Experience</a></li>
+  <li><a href="hobbies.html">Hobbies</a></li>
+  <li><a href="travel.html">Travel</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ul>
+  <div class="nav-edge nav-edge-right"></div>
+</nav>
+
+<div class="main-content page-enter">
+
+  <div class="hiw-hero sh">
+    <div class="eyebrow">Strategic Execution Protocol</div>
+    <h1 class="sh-title">How I Work</h1>
+    <div class="sh-line"></div>
+    <p style="color:var(--text-2);margin-top:15px;max-width:580px;">A 21-step protocol across 4 phases — from first client contact to final product delivery. Select a phase below to explore each step.</p>
+    <div class="hiw-stats">
+      <div><span class="hiw-stat-num">21</span><span class="hiw-stat-lbl">TOTAL STEPS</span></div>
+      <div><span class="hiw-stat-num">04</span><span class="hiw-stat-lbl">PHASES</span></div>
+      <div><span class="hiw-stat-num">100%</span><span class="hiw-stat-lbl">STRUCTURED</span></div>
+      <div><span class="hiw-stat-num">0</span><span class="hiw-stat-lbl">GUESSWORK</span></div>
+    </div>
+  </div>
+
+  <!-- PHASE TABS -->
+  <div class="phase-menu reveal" id="phase-menu"></div>
+
+  <!-- PHASE PANELS -->
+  <div class="phase-panels reveal" id="phase-panels"></div>
+
+  <footer class="stark-footer">
+    <div class="freelance-bar">
+      <span class="fb-pulse"></span><span class="fb-label">OPEN FOR FREELANCE WORK</span>
+      <span class="fb-divider">·</span><span class="fb-socials">Instagram DM · X</span>
+      <a href="contact.html" class="fb-hire-btn">HIRE ME</a>
+    </div>
+    <div class="sf-main-grid">
+      <div class="sf-col-brand">
+        <div class="sf-brand-id">// ID: AS-001 · NAVSARI, GUJARAT, INDIA</div>
+        <h3 class="sf-brand-name">AFFAN SHAIKH</h3>
+        <div class="sf-brand-role">Social Media Director · Web Developer · Content Creator</div>
+        <p class="sf-brand-tagline">Content that hits. Visuals that convert. Between direction and technology lies the space where I create.</p>
+        <div class="sf-terminal-chip"><span class="sf-chip-pulse"></span>● ONLINE · AVAILABLE FOR HIRE</div>
+        <div class="sf-social-icons">
+          <a href="https://instagram.com/AffanKaze" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.834a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></a>
+          <a href="https://x.com/AffanMarvel" target="_blank" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://youtube.com/@AffanMarvel" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="sf-col-nav">
+        <h4 class="sf-header">NAVIGATE</h4>
+        <div class="sf-links-list">
+          <a href="../index.html"><span class="sf-arrow">›</span> Home</a>
+          <a href="projects.html"><span class="sf-arrow">›</span> Projects</a>
+          <a href="services.html"><span class="sf-arrow">›</span> Services</a>
+          <a href="experience.html"><span class="sf-arrow">›</span> Experience</a>
+          <a href="contact.html"><span class="sf-arrow">›</span> Contact</a>
+        </div>
+      </div>
+      <div class="sf-col-nav">
+        <h4 class="sf-header">CONNECT</h4>
+        <div class="sf-links-list sf-connect-list">
+          <a href="https://instagram.com/AffanKaze" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.834a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>Instagram DM</a>
+          <a href="https://x.com/AffanMarvel" target="_blank"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X / Twitter</a>
+          <a href="mailto:hello@affankaze.in"><svg viewBox="0 0 24 24"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm10 8.5L2.5 5.5v12a.5.5 0 0 0 .5.5h18a.5.5 0 0 0 .5-.5v-12L12 12.5z"/></svg>hello@affankaze.in</a>
+        </div>
+      </div>
+    </div>
+    <div class="sf-grad-divider"></div>
+    <div class="sf-bot-bar">
+      <div class="sf-copy">© 2026 <span class="sf-hl">Affan Shaikh</span> · All Rights Reserved · AffanKaze.in</div>
+      <div class="sf-sys-bot"><span class="fb-pulse sf-sys-pulse"></span> SYSTEM ONLINE · ALL MODULES ACTIVE</div>
+    </div>
+  </footer>
+</div>
+
+<script src="../js/header.js"></script>
+<script src="../js/main.js"></script>
+<script>
+const PHASES = [
+  { num:'01', name:'CLIENT INTELLIGENCE', color:'#d4a843', glow:'rgba(212,168,67,0.2)', steps:[
+    {n:1,  badge:'DISCOVERY',       title:'Know About You & Your Brand',      desc:'I learn everything first — your niche, audience, voice, and online presence before touching any tool.'},
+    {n:2,  badge:'SCOPE',           title:'What Do You Want? (Service Scope)', desc:'Clearly defining what service you need — video editing, web dev, social media, automation, or branding.'},
+    {n:3,  badge:'PROOF OF WORK',   title:'Show Past History & Details',       desc:'I share relevant case studies and past work for your exact service so you know what to expect from me.'},
+    {n:4,  badge:'CLIENT BRIEF',    title:'What to Focus On (Brief)',          desc:'Deep-diving into your specific expectations — must-haves, what to avoid, and what success looks like.'}
+  ]},
+  { num:'02', name:'PLANNING & STRATEGY', color:'#00c3ff', glow:'rgba(0,195,255,0.2)', steps:[
+    {n:5,  badge:'IDEATION',        title:'Paper Planning',                    desc:'Before any software, the structure is mapped on paper first — organizing ideas and flow in raw form.'},
+    {n:6,  badge:'RESEARCH',        title:'Detailed Research (Design Notes)',   desc:'Deep research on design inspiration, competitor analysis, and technical requirements. All documented.'},
+    {n:7,  badge:'NOTES',           title:'Rough Notes (Paper Details)',        desc:'Converting research into actionable rough notes — a working document bridging ideation to execution.'},
+    {n:8,  badge:'PLAN LOCKED',     title:'Finalise Planning',                 desc:'Locking in the final plan with clear deliverables, milestones, and what the product will look like.'},
+    {n:9,  badge:'CLIENT APPROVAL', title:'Confirmation',                      desc:'Getting your explicit approval on the plan before any execution starts. No surprises, ever.'},
+    {n:10, badge:'EXECUTION START', title:"Let's Build!",                      desc:'Green light received. Plan approved, tools loaded, execution begins with full momentum.'}
+  ]},
+  { num:'03', name:'STRUCTURE & PROTOTYPE', color:'#8b5cf6', glow:'rgba(139,92,246,0.2)', steps:[
+    {n:11, badge:'V1 PROTOTYPE',       title:'Prototype Build — How It Looks',    desc:'Creating the first visual prototype focused purely on layout and aesthetics. No functionality yet.'},
+    {n:12, badge:'STRUCTURE REVIEW',   title:'Review Prototype Structure',        desc:'Internal review checking structural integrity, visual hierarchy, spacing, and overall flow.'},
+    {n:13, badge:'REFINEMENT',         title:'Changes',                           desc:'Implementing all notes from the structure review — refining layout and correcting issues.'},
+    {n:14, badge:'V2 PROTOTYPE',       title:'Prototype Build (Revised)',          desc:'Rebuilding the prototype with all changes applied. A cleaner, more precise version.'},
+    {n:15, badge:'FINAL PROTO REVIEW', title:'Review Prototype',                  desc:'Final review of the revised prototype. If it passes, we move to full development.'}
+  ]},
+  { num:'04', name:'DEVELOPMENT & DELIVERY', color:'#00c896', glow:'rgba(0,200,150,0.2)', steps:[
+    {n:16, badge:'FUNCTION PLAN',  title:'Changes (Function Refinement)',      desc:'Logging all functional requirements — every interaction, logic, and feature before development.'},
+    {n:17, badge:'DEVELOPMENT',    title:'Add All Functions',                  desc:'Full dev phase — adding all interactive logic, animations, automation, APIs, and functionality.'},
+    {n:18, badge:'QA REVIEW',      title:'Review',                             desc:'End-to-end review of the fully functional product. Every feature and edge case is tested.'},
+    {n:19, badge:'FINAL POLISH',   title:'Changes',                            desc:'Final targeted changes based on the complete review — last polish before packaging the product.'},
+    {n:20, badge:'PACKAGING',      title:'Finalise Product',                   desc:'Code cleanup, optimization, performance testing, and preparing all assets for delivery.'},
+    {n:21, badge:'SHIP 🚀',        title:'Final Review → Ship!',               desc:'Last quality check. If perfect, delivered. If not, we recreate and review until it is.'}
+  ]}
+];
+
+const menuEl = document.getElementById('phase-menu');
+const panelsEl = document.getElementById('phase-panels');
+
+PHASES.forEach((phase, i) => {
+  // Tab
+  const tab = document.createElement('div');
+  tab.className = 'phase-tab' + (i===0?' active':'');
+  tab.style.setProperty('--tc', phase.color);
+  tab.innerHTML = `<span class="phase-tab-num">PHASE ${phase.num}</span><span class="phase-tab-name">${phase.name}</span><span class="phase-tab-count">${phase.steps.length} STEPS</span>`;
+  tab.onclick = () => {
+    document.querySelectorAll('.phase-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.phase-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+i).classList.add('active');
+  };
+  menuEl.appendChild(tab);
+
+  // Panel
+  const panel = document.createElement('div');
+  panel.className = 'phase-panel' + (i===0?' active':'');
+  panel.id = 'panel-'+i;
+  panel.innerHTML = `
+    <div class="panel-header">
+      <span class="panel-phase-badge" style="color:${phase.color};">PHASE ${phase.num}</span>
+      <span class="panel-phase-title">${phase.name}</span>
+      <div class="panel-line" style="background:${phase.color};"></div>
+    </div>
+    <div class="steps-grid">
+      ${phase.steps.map(s=>`
+        <div class="step-card" style="--pc:${phase.color};">
+          <span class="card-step-num">${String(s.n).padStart(2,'0')}</span>
+          <div class="card-top-row">
+            <span class="card-badge">${s.badge}</span>
+            <span class="card-step-label">STEP ${String(s.n).padStart(2,'0')}</span>
+          </div>
+          <div class="card-title">${s.title}</div>
+          <p class="card-desc">${s.desc}</p>
+        </div>`).join('')}
+    </div>`;
+  panelsEl.appendChild(panel);
+});
+</script>
+</body>
+</html>
