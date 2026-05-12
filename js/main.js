@@ -223,11 +223,20 @@ if (!_isTouchDevice) {
 }
 
 // ===== SCROLL PROGRESS =====
+let _scrollProgressRafPending = false;
 window.addEventListener('scroll', () => {
-  const bar = document.getElementById('scroll-bar');
-  if (!bar) return;
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  bar.style.width = (window.scrollY / total * 100) + '%';
+  if (!_scrollProgressRafPending) {
+    _scrollProgressRafPending = true;
+    requestAnimationFrame(() => {
+      const bar = document.getElementById('scroll-bar');
+      if (bar) {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transformOrigin = 'left';
+        bar.style.transform = `scaleX(${window.scrollY / total})`;
+      }
+      _scrollProgressRafPending = false;
+    });
+  }
 });
 
 // ===== NAVBAR =====
@@ -411,13 +420,26 @@ window.typeText = function(el, texts, speed = 90, pause = 3000) {
     if (!_scrollRafPending) {
       _scrollRafPending = true;
       requestAnimationFrame(() => {
+        // Phase 1: Batch all DOM reads (getBoundingClientRect)
+        const activeEls = [];
         _shTitles.forEach(el => {
           const rect = el.getBoundingClientRect();
           if (rect.top < window.innerHeight && rect.bottom > 0) {
-            const depth = (window.innerHeight / 2 - rect.top) * 0.015;
+            activeEls.push({ el, rect });
+          }
+        });
+        
+        // Phase 2: Batch all DOM writes (style.textShadow) with Caching
+        activeEls.forEach(({ el, rect }) => {
+          let depth = (window.innerHeight / 2 - rect.top) * 0.015;
+          depth = Math.round(depth); // Round to nearest 1px to drastically reduce text-shadow repaints
+          
+          if (el.dataset.lastDepth !== String(depth)) {
+            el.dataset.lastDepth = depth;
             el.style.textShadow = `0 ${depth}px ${depth * 3}px rgba(212,168,67,0.3), 0 0 40px rgba(212,168,67,0.1)`;
           }
         });
+        
         _scrollRafPending = false;
       });
     }

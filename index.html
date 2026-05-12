@@ -113,6 +113,7 @@
     position: relative;
     transition: var(--t3);
     overflow: hidden;
+    transform: translateZ(0);
   }
   .hstat::before {
     content: '';
@@ -284,6 +285,7 @@
     padding: 4px 10px;
     white-space: nowrap;
     backdrop-filter: blur(10px);
+    transform: translateZ(0);
     box-shadow: 0 0 10px rgba(0,207,255,0.1);
   }
   .hd1 { top: 25px; left: -90px; }
@@ -307,6 +309,7 @@
     box-shadow: 0 0 20px rgba(212,168,67,0.2);
     z-index: 6;
     backdrop-filter: blur(10px);
+    transform: translateZ(0);
   }
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(25px)} to{opacity:1;transform:translateY(0)} }
@@ -324,6 +327,7 @@
     gap: 0;
     position: relative;
     z-index: 3;
+    transform: translateZ(0);
     box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(212,168,67,0.04);
   }
   .strip::before {

@@ -203,9 +203,11 @@ body::before {
   height: 2px;
   background: linear-gradient(90deg, var(--gold), var(--arc), var(--gold));
   z-index: 9999;
-  width: 0%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
   box-shadow: 0 0 10px var(--gold-glow), 0 0 20px var(--arc-glow);
-  transition: width .1s linear;
+  transition: transform .1s linear;
 }
 
 /* ===== LOADER ===== */
@@ -315,7 +317,7 @@ body::before {
   align-items: center;
   box-sizing: border-box;
   animation: navFloatIn 0.9s ease both;
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
   transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
               background-color 0.3s ease,
               backdrop-filter 0.3s ease,
@@ -745,6 +747,7 @@ img.nav-logo-text {
   transition: var(--t5);
   box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(255,255,255,0.03);
   transform-style: preserve-3d;
+  transform: translateZ(0);
 }
 /* Glass inner sheen */
 .panel::after {
@@ -1478,7 +1481,7 @@ footer::before { display: none; /* remove old top border line */ }
 }
 
 .nav-hidden {
-  transform: translateY(-110%) !important;
+  transform: translateY(-110%) translateZ(0) !important;
 }
 
 .nav-scrolled {
