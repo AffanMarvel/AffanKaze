@@ -556,6 +556,13 @@
    GLOBAL OVERFLOW PREVENTION
    ============================================================ */
 @media (max-width: 768px) {
+  /* Page-level hard overflow lock */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .hero-editorial,
   .hero-ed-content,
   .hero-ed-bottom,
   .strip,
@@ -567,6 +574,17 @@
     overflow-x: hidden;
     max-width: 100vw;
     box-sizing: border-box;
+  }
+
+  /* Absolute-positioned photo column: prevent it exceeding viewport */
+  .hero-ed-photo-col {
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  /* HUD corners: limit their negative offsets to avoid bleedover */
+  .hero-ed-hud-corner {
+    display: none;
   }
 
   /* Ensure no element bleeds out */
